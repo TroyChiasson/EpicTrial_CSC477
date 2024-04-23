@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EdwardMainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public GameObject SettingsMenu;
+    public GameObject ControlsMenu;
 
     void Start()
     {
         SettingsMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Edward Scene");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+        SceneManager.LoadScene("MainGame");
+    }   
 
     public void Quit()
     {
