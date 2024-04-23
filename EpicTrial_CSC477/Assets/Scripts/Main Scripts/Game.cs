@@ -7,6 +7,8 @@ public class Game : MonoBehaviour
 
     public static Game Instance { get; private set; }
 
+    public Input input;
+
     // Start is called before the first frame update
     void Start() {
         input = new Input();
