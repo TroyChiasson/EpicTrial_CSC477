@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    //WASD key pressed
     private bool up = false;
     private bool down = false;
     private bool left = false;
     private bool right = false;
 
-    private float playerSpeed = 1.0f;
+    //how fast the player moves in x or y direction
+    public float playerSpeed = 5.0f;
 
+    //when moving diagonally, multiply x and y speeds by this amount
+    private const float DIAGMULT = 0.75f;
+
+    //player physics
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
+    //start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    //update is called once per frame
     void Update() {
 
         //movement keys being pressed
@@ -34,36 +40,24 @@ public class Player : MonoBehaviour {
         if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
-        if (up) {
-            var vel = rb.velocity;
-            vel.y = playerSpeed;
-            rb.velocity = vel;
-        }
-        else if (down) {
-            var vel = rb.velocity;
-            vel.y = -playerSpeed;
-            rb.velocity = vel;
-        }
-        else {
-            var vel = rb.velocity;
-            vel.y = 0;
-            rb.velocity = vel;
-        }
+        //diagonal movement
+        if (up && left) { rb.SetVel(x: -playerSpeed * DIAGMULT, y: playerSpeed * DIAGMULT); }
+        else if (up && right) { rb.SetVel(x: playerSpeed * DIAGMULT, y: playerSpeed * DIAGMULT); }
+        else if (down && left) { rb.SetVel(x: -playerSpeed * DIAGMULT, y: -playerSpeed * DIAGMULT); }
+        else if (down && right) { rb.SetVel(x: playerSpeed * DIAGMULT, y: -playerSpeed * DIAGMULT); }
 
-        if (left) {
-            var vel = rb.velocity;
-            vel.x = -playerSpeed;
-            rb.velocity = vel;
-        }
-        else if (right) {
-            var vel = rb.velocity;
-            vel.x = playerSpeed;
-            rb.velocity = vel;
-        }
+        //straight x or y movement
         else {
-            var vel = rb.velocity;
-            vel.x = 0;
-            rb.velocity = vel;
+
+            //y movement
+            if (up) { rb.SetVel(y: playerSpeed); }
+            else if (down) { rb.SetVel(y: -playerSpeed); }
+            else { rb.SetVel(y: 0); }
+
+            //x movement
+            if (left) { rb.SetVel(x: -playerSpeed); }
+            else if (right) { rb.SetVel(x: playerSpeed); }
+            else { rb.SetVel(x: 0); }
         }
 
     }
