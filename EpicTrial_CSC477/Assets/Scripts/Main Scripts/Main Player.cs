@@ -20,10 +20,20 @@ public class MainPlayer : MonoBehaviour
     //player physics
     private Rigidbody2D rb;
 
+    //dash stuffs
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLength = .5f, dashCooldown = 1f;
+
+    private float dashCounter;
+    private float dashCoolCounter;
+
     //start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        activeMoveSpeed = playerSpeed; 
     }
 
     //update is called once per frame
@@ -42,26 +52,53 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
-        //diagonal movement
-        if (up && left) { rb.SetVel(x: -playerSpeed * DIAGMULT, y: playerSpeed * DIAGMULT); }
-        else if (up && right) { rb.SetVel(x: playerSpeed * DIAGMULT, y: playerSpeed * DIAGMULT); }
-        else if (down && left) { rb.SetVel(x: -playerSpeed * DIAGMULT, y: -playerSpeed * DIAGMULT); }
-        else if (down && right) { rb.SetVel(x: playerSpeed * DIAGMULT, y: -playerSpeed * DIAGMULT); }
+        // diagonal movement
+        if (up && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
+        else if (up && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
+        else if (down && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: -activeMoveSpeed * DIAGMULT); }
+        else if (down && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: -activeMoveSpeed * DIAGMULT); }
 
         //straight x or y movement
         else
         {
 
-            //y movement
-            if (up) { rb.SetVel(y: playerSpeed); }
-            else if (down) { rb.SetVel(y: -playerSpeed); }
+            // y movement
+            if (up) { rb.SetVel(y: activeMoveSpeed); }
+            else if (down) { rb.SetVel(y: -activeMoveSpeed); }
             else { rb.SetVel(y: 0); }
 
-            //x movement
-            if (left) { rb.SetVel(x: -playerSpeed); }
-            else if (right) { rb.SetVel(x: playerSpeed); }
+            // x movement
+            if (left) { rb.SetVel(x: -activeMoveSpeed); }
+            else if (right) { rb.SetVel(x: activeMoveSpeed); }
             else { rb.SetVel(x: 0); }
         }
 
+
+        //dash stuffs
+
+        if (Game.Instance.input.Default.Space.WasPressedThisFrame())
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if(dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = playerSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if(dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
 }
