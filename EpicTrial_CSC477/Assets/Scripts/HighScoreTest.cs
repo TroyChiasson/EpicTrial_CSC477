@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// CHECK HIGHSCORE HERE
+// https://www.protohacks.net/LATech/499/scores/
 public class HighScoreTest : MonoBehaviour
 {
     private float delay;
