@@ -61,16 +61,16 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
         // Diagonal movement
-        if (up && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-        else if (up && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-        else if (down && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (down && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        if (up && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (up && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (down && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        else if (down && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
 
         else {
             // Straight x or y movement
                 // Y movement
-                if (up) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
-                else if (down) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+                if (up) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+                else if (down) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
                 else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
                 // X movement
