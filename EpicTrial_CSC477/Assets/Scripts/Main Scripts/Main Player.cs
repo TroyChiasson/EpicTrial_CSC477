@@ -53,8 +53,8 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
         // diagonal movement
-        if (up && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: -activeMoveSpeed * DIAGMULT); }
-        else if (up && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: -activeMoveSpeed * DIAGMULT); }
+        if (up && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * -DIAGMULT); }
+        else if (up && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * -DIAGMULT); }
         else if (down && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
         else if (down && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
 
