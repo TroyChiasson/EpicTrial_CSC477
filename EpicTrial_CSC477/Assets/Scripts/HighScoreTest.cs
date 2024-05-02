@@ -18,12 +18,12 @@ public class HighScoreTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (delay > 0) {
-            delay -= Time.deltaTime;
-            if (delay < 0) {
-                HS.SubmitHighScore(this, "Troy Himself", Random.Range(100,1000));
-            }
-        }
+        // if (delay > 0) {
+        //     delay -= Time.deltaTime;
+        //     if (delay < 0) {
+        //         HS.SubmitHighScore(this, "Troy Himself", Random.Range(100,1000));
+        //     }
+        // }
     }
 
 
