@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 234449198}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,8 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bef877d756c504996f3445f14f5470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullettest: {fileID: 0}
-  fireDelay: 3000
+  Bullettest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
+    type: 3}
+  fireDelay: 1500
   fireTime: 0
   firingPoint: {fileID: 993431111}
 --- !u!212 &234449199
@@ -353,7 +354,7 @@ Transform:
   m_GameObject: {fileID: 234449197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: -1.136, z: -0.009}
+  m_LocalPosition: {x: -0.12, y: -1.136, z: 0}
   m_LocalScale: {x: 0.16919246, y: 0.1448667, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -943,7 +944,6 @@ GameObject:
   - component: {fileID: 923069473}
   - component: {fileID: 923069474}
   - component: {fileID: 923069475}
-  - component: {fileID: 923069476}
   - component: {fileID: 923069477}
   m_Layer: 0
   m_Name: Shield
@@ -1030,25 +1030,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 923069472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521e7517f697f9f4a87363d446b28c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &923069476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923069472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 899e68e5e7f1e4749a2784e0d59b19d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1519186428}
-  orbitDistance: 1
+  orbitDistance: 0.5
   rotationSpeed: 100
-  Bullettest: {fileID: 0}
+  Bullettest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
+    type: 3}
   firingPoint: {fileID: 966011057}
 --- !u!65 &923069477
 BoxCollider:
@@ -1065,7 +1054,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1096,7 +1085,7 @@ Transform:
   m_GameObject: {fileID: 966011056}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.5, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

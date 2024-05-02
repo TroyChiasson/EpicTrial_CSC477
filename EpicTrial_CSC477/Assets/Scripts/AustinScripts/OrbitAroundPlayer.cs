@@ -26,15 +26,16 @@ public class OrbitAroundPlayer : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
+        print("Yo");
         if (other.gameObject.tag == "Bullet") {
             Reflect();
         }
     }
 
     void Reflect() {
-        Vector3 enemyPos = new Vector3(firingPoint.position.x - 1, firingPoint.position.y - 1, firingPoint.position.z);
+        Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(Bullettest, enemyPos, Quaternion.identity);
-        Vector3 direction = new Vector3(firingPoint.position.x, firingPoint.position.y, 0);
-        firedBullet.GetComponent<Rigidbody>().velocity = direction * -2f;
+        Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.position;
+        firedBullet.GetComponent<Rigidbody>().velocity = direction * 2f;
     }
 }
