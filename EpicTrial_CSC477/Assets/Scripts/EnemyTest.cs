@@ -25,9 +25,9 @@ public class EnemyTest : MonoBehaviour
             fireTime += 1f;
         }
         else {
-            Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
+            Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y + 1.1f, firingPoint.position.z);
             GameObject firedBullet = Instantiate(Bullettest, enemyPos, Quaternion.identity);
-            Vector3 direction = new Vector3(0, firingPoint.position.x, 0);
+            Vector3 direction = new Vector3(0, firingPoint.position.y, 0);
             firedBullet.GetComponent<Rigidbody>().velocity = direction * 2f;
             fireTime = 0f;
         }
