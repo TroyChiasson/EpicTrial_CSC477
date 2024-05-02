@@ -42,7 +42,8 @@ public class MainPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         activeMoveSpeed = playerSpeed;
-        playerHealth = startHealth; 
+        playerHealth = startHealth;
+        UpdateHealthUI();
     }
 
     //update is called once per frame
@@ -106,43 +107,29 @@ public class MainPlayer : MonoBehaviour
         {
             dashCoolCounter -= Time.deltaTime;
         }
-
-        // Health Check 
-
-        /*
-        if (damage)
-        {
-            CheckHealth();
-        }
-        */
     }
 
-    void CheckHealth()
+    void OnCollisionEnter(Collision collision)
     {
-        if (playerHealth == 3)
+        // Check if the collided object has the desired tag
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet"))
         {
-            heart1.SetActive(true);
-            heart2.SetActive(true);
-            heart3.SetActive(true);
+            // Reduce player health
+            playerHealth--;
+            UpdateHealthUI();
+
+            // Check if player health has reached zero
+            if (playerHealth <= 0)
+            {              
+                SceneManager.LoadScene("MainDeath");
+            }
         }
-        else if (playerHealth == 2)
-        {
-            heart1.SetActive(true);
-            heart2.SetActive(true);
-            heart3.SetActive(false);
-        }
-        else if (playerHealth == 1)
-        {
-            heart1.SetActive(true);
-            heart2.SetActive(false);
-            heart3.SetActive(false);
-        }
-        else if (playerHealth == 0)
-        {
-            heart1.SetActive(false);
-            heart2.SetActive(false);
-            heart3.SetActive(false);
-            SceneManager.LoadScene("MainDeath");
-        }
+    }
+
+    void UpdateHealthUI()
+    { 
+        heart1.SetActive(playerHealth >= 1);
+        heart2.SetActive(playerHealth >= 2);
+        heart3.SetActive(playerHealth >= 3);
     }
 }
