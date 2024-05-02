@@ -7,6 +7,8 @@ TagManager:
   - MainPlayer
   - Shield
   - Enemy
+  - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX
