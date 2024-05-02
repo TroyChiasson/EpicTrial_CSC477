@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainPlayer : MonoBehaviour
 {
@@ -29,11 +30,19 @@ public class MainPlayer : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
+    // Player Health 
+    public int playerHealth;
+    private int startHealth = 3;
+    public GameObject heart1;
+    public GameObject heart2;
+    public GameObject heart3;
+
     //start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        activeMoveSpeed = playerSpeed; 
+        activeMoveSpeed = playerSpeed;
+        playerHealth = startHealth; 
     }
 
     //update is called once per frame
@@ -99,6 +108,44 @@ public class MainPlayer : MonoBehaviour
         if(dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
+        }
+
+        // Health Check 
+
+        /*
+        if (damage)
+        {
+            CheckHealth();
+        }
+        */
+    }
+
+    void CheckHealth()
+    {
+        if (playerHealth == 3)
+        {
+            heart1.SetActive(true);
+            heart2.SetActive(true);
+            heart3.SetActive(true);
+        }
+        else if (playerHealth == 2)
+        {
+            heart1.SetActive(true);
+            heart2.SetActive(true);
+            heart3.SetActive(false);
+        }
+        else if (playerHealth == 1)
+        {
+            heart1.SetActive(true);
+            heart2.SetActive(false);
+            heart3.SetActive(false);
+        }
+        else if (playerHealth == 0)
+        {
+            heart1.SetActive(false);
+            heart2.SetActive(false);
+            heart3.SetActive(false);
+            SceneManager.LoadScene("MainDeath");
         }
     }
 }
