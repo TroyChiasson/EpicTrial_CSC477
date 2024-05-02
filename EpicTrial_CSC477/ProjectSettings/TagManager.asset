@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Bullet
   - Wall
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX

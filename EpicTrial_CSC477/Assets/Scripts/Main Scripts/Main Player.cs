@@ -19,7 +19,7 @@ public class MainPlayer : MonoBehaviour
     private const float DIAGMULT = 0.75f;
 
     //player physics
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
     //dash stuffs
     private float activeMoveSpeed;
@@ -40,7 +40,7 @@ public class MainPlayer : MonoBehaviour
     //start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         activeMoveSpeed = playerSpeed;
         playerHealth = startHealth; 
     }
@@ -48,7 +48,6 @@ public class MainPlayer : MonoBehaviour
     //update is called once per frame
     void Update()
     {
-
         //movement keys being pressed
         if (Game.Instance.input.Default.Up.WasPressedThisFrame()) { up = true; }
         if (Game.Instance.input.Default.Down.WasPressedThisFrame()) { down = true; }
@@ -61,25 +60,23 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
-        // diagonal movement
-        if (up && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * -DIAGMULT); }
-        else if (up && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * -DIAGMULT); }
-        else if (down && left) { rb.SetVel(x: -activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
-        else if (down && right) { rb.SetVel(x: activeMoveSpeed * DIAGMULT, y: activeMoveSpeed * DIAGMULT); }
+        // Diagonal movement
+        if (up && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        else if (up && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        else if (down && left) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (down && right) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
 
-        //straight x or y movement
-        else
-        {
+        else {
+            // Straight x or y movement
+                // Y movement
+                if (up) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
+                else if (down) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+                else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
-            // y movement
-            if (up) { rb.SetVel(y: -activeMoveSpeed); }
-            else if (down) { rb.SetVel(y: activeMoveSpeed); }
-            else { rb.SetVel(y: 0); }
-
-            // x movement
-            if (left) { rb.SetVel(x: -activeMoveSpeed); }
-            else if (right) { rb.SetVel(x: activeMoveSpeed); }
-            else { rb.SetVel(x: 0); }
+                // X movement
+                if (left) rb.velocity = new Vector3(-activeMoveSpeed, rb.velocity.y, 0);
+                else if (right) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
+                else rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
 
 
