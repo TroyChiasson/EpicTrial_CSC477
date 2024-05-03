@@ -21,4 +21,5 @@ public class BulletMotion : MonoBehaviour
                 Destroy(other.gameObject);
             }
     }
+   
 }
