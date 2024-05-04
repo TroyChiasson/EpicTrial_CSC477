@@ -137,8 +137,8 @@ GameObject:
   - component: {fileID: 78590496}
   - component: {fileID: 78590495}
   - component: {fileID: 78590494}
-  - component: {fileID: 78590500}
   - component: {fileID: 78590501}
+  - component: {fileID: 78590502}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -156,7 +156,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.5000001
-  m_Speed: 0.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb7602d78e284c5a93e53326b968e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  attackRange: 10
+  target: {fileID: 729771789}
 --- !u!136 &78590496
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -270,23 +271,6 @@ Transform:
   - {fileID: 1019136721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &78590500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78590493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bef877d756c504996f3445f14f5470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullettest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
-    type: 3}
-  fireDelay: 1500
-  fireTime: 0
-  firingPoint: {fileID: 1019136721}
 --- !u!54 &78590501
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -314,6 +298,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!114 &78590502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78590493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1da4a85a1d2f448838021c107ce403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
+    type: 3}
+  fireDelay: 3
+  minFireDelay: 1
+  fireTime: 0
+  firingPoint: {fileID: 1019136721}
+  player: {fileID: 729771789}
+  attackRange: 30
 --- !u!1 &92043786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,7 +1861,7 @@ GameObject:
   - component: {fileID: 729771784}
   m_Layer: 0
   m_Name: Player
-  m_TagString: MainPlayer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2023,7 +2027,7 @@ Transform:
   m_GameObject: {fileID: 1019136720}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.87}
   m_LocalScale: {x: 0.16919245, y: 0.14486668, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
