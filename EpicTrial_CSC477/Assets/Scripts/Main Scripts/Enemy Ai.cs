@@ -25,11 +25,15 @@ public class EnemyMovement : MonoBehaviour
         {
             // Stop movement if close enough to attack
             navMeshAgent.isStopped = true;
+
+            transform.LookAt(target);
         }
         else
         {
             // Continue movement if close enough to attack
             navMeshAgent.isStopped = false;
+
+            
         }
 
         if (target != null)

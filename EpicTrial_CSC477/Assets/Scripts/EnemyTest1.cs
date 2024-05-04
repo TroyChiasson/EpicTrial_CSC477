@@ -5,15 +5,22 @@ using UnityEngine;
 public class EnemyTest1 : MonoBehaviour
 {
     public GameObject BulletTest;
-    public float fireDelay = 3.0f; // Time between shots
-    public float minFireDelay = 1.0f; // Minimum time to fire if player is in range
-    public float fireTime = 0f;
+    public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
+    public float minFireDelay = 1.0f; // Minimum time between shots (close range)
+    public AnimationCurve fireRateCurve; // Curve to adjust fire delay based on distance
+    public float attackRange = 10.0f; // Distance to fire at player
     public Transform firingPoint;
     public Transform player; // Assign the player transform in the inspector
-    public float attackRange = 10.0f; // Distance to fire at player
+
+    private float fireTime = 0f;
 
     void Start()
     {
+        // Ensure fireRateCurve exists (optional)
+        if (fireRateCurve == null)
+        {
+            fireRateCurve = new AnimationCurve();
+        }
     }
 
     void Update()
@@ -26,31 +33,17 @@ public class EnemyTest1 : MonoBehaviour
         // Check if player is in range
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= attackRange)
+        // Calculate fire delay based on distance and curve
+        float fireDelay = Mathf.Lerp(maxFireDelay, minFireDelay, fireRateCurve.Evaluate(distanceToPlayer / attackRange));
+
+        if (fireTime >= fireDelay)
         {
-            // Player is in range, reset fire timer or fire if ready
-            if (fireTime >= fireDelay)
-            {
-                fireBullet();
-                fireTime = 0.0f;
-            }
-            else
-            {
-                fireTime += Time.deltaTime;
-            }
+            fireBullet();
+            fireTime = 0.0f;
         }
         else
         {
-            // Player is not in range, use minimum fire delay
-            if (fireTime >= minFireDelay)
-            {
-                fireBullet();
-                fireTime = 0.0f;
-            }
-            else
-            {
-                fireTime += Time.deltaTime;
-            }
+            fireTime += Time.deltaTime;
         }
     }
 
