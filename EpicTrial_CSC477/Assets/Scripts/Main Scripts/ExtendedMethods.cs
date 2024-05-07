@@ -25,4 +25,18 @@ public static class ExtendedMethods {
         if (y is not null) { scale.y = y.Value; }
         tf.localScale = scale;
     }
+    public static void SetRotation(this Transform tf, float? x = null, float? y = null, float? z = null) {
+        var rotation = tf.rotation;
+        if (x is not null) { rotation.x = x.Value; }
+        if (y is not null) { rotation.y = y.Value; }
+        if (z is not null) { rotation.z = z.Value; }
+        tf.rotation = rotation;
+    }
+    public static void AddRotation(this Transform tf, float? x = null, float? y = null, float? z = null) {
+        var rotation = tf.rotation;
+        if (x is not null) { rotation.x += x.Value; }
+        if (y is not null) { rotation.y += y.Value; }
+        if (z is not null) { rotation.z += z.Value; }
+        tf.rotation = rotation;
+    }
 }
