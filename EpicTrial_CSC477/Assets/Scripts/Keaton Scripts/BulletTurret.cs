@@ -8,6 +8,8 @@ public class BulletTurret : MonoBehaviour
 
     public Transform player;
 
+    private bool activated = true;
+
     private float turnSpeed = 1f;
 
     private bool fireEnabled = false;
@@ -17,16 +19,24 @@ public class BulletTurret : MonoBehaviour
     public Transform firingPoint;
     public GameObject BulletTest;
 
+    private MeshRenderer renderer;
+    public Material offMaterial;
+
     // Start is called before the first frame update
     void Start() {
-        
+        renderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (!activated) { return; }
         Turn(DetermineAngle());
-        Debug.Log(fireEnabled);
         CycleFiring();
+    }
+
+    public void Deactivate() {
+        renderer.material = offMaterial;
+        activated = false;
     }
 
     public void ToggleFire() { fireEnabled = !fireEnabled; }

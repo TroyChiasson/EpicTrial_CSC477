@@ -103,6 +103,7 @@ MonoBehaviour:
   firingPoint: {fileID: 3540427670910072857}
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}
+  offMaterial: {fileID: 2100000, guid: 67ef36390b9e84140aede2f814824f8e, type: 2}
 --- !u!1 &417956618080931528
 GameObject:
   m_ObjectHideFlags: 0
