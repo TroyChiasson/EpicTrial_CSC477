@@ -19,12 +19,14 @@ public class BulletTurret : MonoBehaviour
     public Transform firingPoint;
     public GameObject BulletTest;
 
+    public GameObject turretHead;
+
     private MeshRenderer renderer;
     public Material offMaterial;
 
     // Start is called before the first frame update
     void Start() {
-        renderer = GetComponent<MeshRenderer>();
+        renderer = turretHead.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -68,8 +70,8 @@ public class BulletTurret : MonoBehaviour
     private float DetermineAngle() {
 
         //trig to find angle between turret and player
-        float xdif = player.position.x - transform.position.x;
-        float ydif = player.position.y - transform.position.y;
+        float xdif = player.position.x - turretHead.transform.position.x;
+        float ydif = player.position.y - turretHead.transform.position.y;
         float radians = (float) Math.Atan2(xdif, ydif);
         float angle = radians * (float) (180 / Math.PI);
 
@@ -86,6 +88,6 @@ public class BulletTurret : MonoBehaviour
     /**turn smoothly to a target angle**/
     private void Turn(float angle) {
         Quaternion targetAngle = Quaternion.Euler(0, 0, -angle);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetAngle, Time.deltaTime * turnSpeed);
+        turretHead.transform.rotation = Quaternion.Slerp(turretHead.transform.rotation, targetAngle, Time.deltaTime * turnSpeed);
     }
 }

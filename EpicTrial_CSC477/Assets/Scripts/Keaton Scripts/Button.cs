@@ -5,13 +5,14 @@ using UnityEngine;
 public class Button : MonoBehaviour {
 
     public Material onLight;
+    public GameObject buttonLight;
     private MeshRenderer renderer;
     public BulletTurret[] bts;
     public Door[] ds;
 
     // Start is called before the first frame update
     void Start() {
-        renderer = GetComponent<MeshRenderer>();
+        renderer = buttonLight.GetComponent<MeshRenderer>();
     }
 
     public void TurnOn() {
