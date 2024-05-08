@@ -60,7 +60,23 @@ public class MainPlayer : MonoBehaviour {
         UpdateHealthUI();
 
         // Check if player health has reached zero
-        if (playerHealth <= 0) { SceneManager.LoadScene("MainDeath"); }
+        if (playerHealth <= 0) 
+        {
+            StartCoroutine(LoadSceneAfterDelay("MainDeath"));
+            playerDeath();
+        }
+
+    }
+    public void playerDeath()
+    {
+        playerSpeed = 0;
+        dashSpeed = 0;
+        //Play death sound here
+    }
+    IEnumerator LoadSceneAfterDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(5f); // Wait for 5 seconds
+        SceneManager.LoadScene(sceneName);
     }
 
     //update is called once per frame

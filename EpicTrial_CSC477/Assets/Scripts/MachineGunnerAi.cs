@@ -20,6 +20,8 @@ public class MachineGunnerAi : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("MainPlayer").transform;
+
         // Ensure fireRateCurve exists (optional)
         if (fireRateCurve == null)
         {
