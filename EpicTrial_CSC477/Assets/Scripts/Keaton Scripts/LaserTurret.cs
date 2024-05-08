@@ -68,8 +68,6 @@ public class LaserTurret : MonoBehaviour {
                 }
                 destroyList = new List<GameObject>();
             }
-
-            
         }
     }
 
