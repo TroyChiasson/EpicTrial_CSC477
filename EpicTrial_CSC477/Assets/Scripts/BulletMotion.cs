@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletMotion : MonoBehaviour
 {
+    public GameObject explosionPrefab; // Prefab of the explosion effect
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,8 @@ public class BulletMotion : MonoBehaviour
     void OnCollisionEnter(Collision other) {
             Destroy(this.gameObject);
             if (other.gameObject.tag == "Enemy") {
-                Destroy(other.gameObject);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
             }
     }
    
