@@ -47,6 +47,7 @@ public class MainPlayer : MonoBehaviour {
     //start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
         activeMoveSpeed = playerSpeed;
         playerHealth = startHealth;
         UpdateHealthUI();
@@ -62,15 +63,16 @@ public class MainPlayer : MonoBehaviour {
         // Check if player health has reached zero
         if (playerHealth <= 0) 
         {
-            StartCoroutine(LoadSceneAfterDelay("MainDeath"));
             playerDeath();
+            StartCoroutine(LoadSceneAfterDelay("MainDeath"));
+           
         }
 
     }
     public void playerDeath()
     {
-        playerSpeed = 0;
-        dashSpeed = 0;
+        Destroy(GameObject.FindGameObjectWithTag("Shield"));
+        rb.isKinematic = true;
         //Play death sound here
     }
     IEnumerator LoadSceneAfterDelay(string sceneName)

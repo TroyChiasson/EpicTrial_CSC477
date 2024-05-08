@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 75538947536130267}
   - component: {fileID: 2608588420239391821}
-  - component: {fileID: 6926138317132334892}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Explosion
@@ -75,28 +74,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!102 &6926138317132334892
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424314378639780646}
-  m_Text: HI
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
 --- !u!1 &8880676337494127804
 GameObject:
   m_ObjectHideFlags: 0

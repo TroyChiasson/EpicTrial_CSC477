@@ -502,7 +502,7 @@ MonoBehaviour:
   player: {fileID: 729771789}
   orbitDistance: 1
   rotationSpeed: 100
-  Bullettest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
+  Bullettest: {fileID: 474032302994295501, guid: d5fd3ec99df673a41b103f3503f2293b,
     type: 3}
   firingPoint: {fileID: 2059919062}
   shieldSegments:
