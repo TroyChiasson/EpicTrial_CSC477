@@ -1,0 +1,174 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class LaserTurret : MonoBehaviour {
+
+    public Transform player;
+
+    private bool activated = true;
+
+    private float turnSpeed = 1f;
+
+    private bool fireEnabled = false;
+    private float fireSpeed = 5f;
+    private float fireTime = 0;
+    private bool fireCharge = false;
+    private float chargeSpeed = 3f;
+    private float chargeTime = 0;
+    private bool flickerEnabled = false;
+    private bool flickerIsWhite = false;
+    private float flickerSpeed = 0.05f;
+    private float flickerTime = 0;
+    private int flickerCount = 6;
+    private int flickers = 0;
+    private bool shoot = true;
+    private float shootSpeed = 0.3f;
+    private float shootTime = 0;
+
+    private float laserMaxWidth;
+
+    public Transform firingPoint;
+    public GameObject BulletTest;
+
+    public GameObject turretHead;
+    public GameObject laser;
+    private MeshRenderer laserRenderer;
+
+    private MeshRenderer renderer;
+    public Material offMaterial;
+
+    // Start is called before the first frame update
+    void Start() {
+        laserRenderer = laser.GetComponent<MeshRenderer>();
+        laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
+        laserMaxWidth = laser.transform.localScale.y;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (!activated) { return; }
+        Turn(DetermineAngle());
+        CycleFiring();
+    }
+
+    public void Deactivate() {
+        renderer.material = offMaterial;
+        activated = false;
+    }
+
+    public void ToggleFire() { fireEnabled = !fireEnabled; }
+
+    public void CycleFiring() {
+
+        if (shoot) {
+
+            if (shootTime >= shootSpeed) {
+                shootTime = 0;
+                shoot = false;
+                laser.transform.SetLocalScale(y: 0);
+            }
+
+            else {
+                shootTime += Time.deltaTime;
+                var scale = laserMaxWidth * (shootSpeed - shootTime) / shootSpeed;
+                laser.transform.SetLocalScale(y: scale);
+            }
+        }
+
+        if (flickerEnabled) {
+
+            if (flickerTime >= flickerSpeed) {
+                flickerTime = 0;
+                flickers++;
+                if (flickerIsWhite) {
+                    flickerIsWhite = false;
+                    laserRenderer.material.color = Color.black;
+                }
+                else {
+                    flickerIsWhite = true;
+                    laserRenderer.material.color = Color.white;
+                }
+            }
+
+            else { flickerTime += Time.deltaTime; }
+
+            if (flickers >= flickerCount) {
+                flickerEnabled = false;
+                laserRenderer.material.color = Color.red;
+                shoot = true;
+            }
+
+            return;
+        }
+
+        if (fireCharge) {
+
+            if (chargeTime >= chargeSpeed) {
+                chargeTime = 0;
+                fireCharge = false;
+                laserRenderer.material.color = Color.white;
+                flickerEnabled = true;
+                flickerIsWhite = true;
+                flickers = 0;
+                laser.transform.SetLocalScale(y: laserMaxWidth);
+            }
+
+            else {
+                var alpha = chargeTime / chargeSpeed / 3;
+                var scale = laserMaxWidth * chargeTime / chargeSpeed;
+                laserRenderer.material.color = SetAlpha(laserRenderer.material.color, alpha);
+                laser.transform.SetLocalScale(y: scale);
+                chargeTime += Time.deltaTime;
+            }
+
+            return;
+        }
+
+        //do not do anything if firing isnt enabled
+        if (!fireEnabled) { return; }
+
+        //fire if firespeed has passed
+        if (fireTime >= fireSpeed) {
+            fireTime = 0;
+            fireCharge = true;
+            laserRenderer.material.color = Color.cyan;
+            laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
+        }
+
+        //if firespeed has not passed, record current frame time
+        else { fireTime += Time.deltaTime; }
+
+    }
+
+    /**determine the angle that the turret should rotate to to point towards the player**/
+    private float DetermineAngle() {
+
+        //trig to find angle between turret and player
+        float xdif = player.position.x - turretHead.transform.position.x;
+        float ydif = player.position.y - turretHead.transform.position.y;
+        float radians = (float)Math.Atan2(xdif, ydif);
+        float angle = radians * (float)(180 / Math.PI);
+
+        //angle is offset by 90 degrees by default for some reason. correct that
+        angle = angle - 90;
+
+        //make negatives not negative
+        if (angle < 0) { angle = 360 + angle; }
+
+        //final angle
+        return angle;
+    }
+
+    /**turn smoothly to a target angle**/
+    private void Turn(float angle) {
+        Quaternion targetAngle = Quaternion.Euler(0, 0, -angle);
+        turretHead.transform.rotation = Quaternion.Slerp(turretHead.transform.rotation, targetAngle, Time.deltaTime * turnSpeed);
+    }
+
+    private Color SetAlpha(Color color, float alpha) {
+        color.a = alpha;
+        return color;
+    }
+}
