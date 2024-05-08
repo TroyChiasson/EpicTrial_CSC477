@@ -6,8 +6,6 @@ public class BomberAi : MonoBehaviour
     public float fuseTime = 5.0f; // Time until explosion (seconds)
     public float explosionRadius = 5.0f; // Radius of the explosion
     public GameObject explosionPrefab; // Prefab of the explosion effect
-
-    public GameObject ExplosionCollision;
     private float timer = 0.0f;
     private bool exploded = false;
     private NavMeshAgent navMeshAgent;
@@ -25,19 +23,20 @@ public class BomberAi : MonoBehaviour
         timer += Time.deltaTime;
 
         // Check for explosion conditions
-        if (timer >= fuseTime || IsPlayerInRange())
+        if (timer >= fuseTime)
         {
             Explode();
         }
     }
 
-    bool IsPlayerInRange()
+    void OnCollisionEnter(Collision collision)
     {
-        // Check if player is within explosion radius
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        return distanceToPlayer <= explosionRadius;
-
-
+       
+        if (collision.gameObject == player && !exploded) // Check collision with player
+        {
+            print("Yep");
+            Explode();
+        }
     }
 
     void Explode()
@@ -55,8 +54,8 @@ public class BomberAi : MonoBehaviour
 
             // Spawn explosion effect
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Instantiate(ExplosionCollision, transform.position, Quaternion.identity);
-            Destroy(ExplosionCollision);
+            
+
 
             // Destroy the bomber
             Destroy(gameObject);

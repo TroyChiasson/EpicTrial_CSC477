@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletTurretTrigger : MonoBehaviour {
+public class LaserTurretTrigger : MonoBehaviour {
 
-    public BulletTurret bTurret;
+    public LaserTurret lTurret;
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "Player") {
-            bTurret.ToggleFire();
+            lTurret.ToggleFire();
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.name == "Player") {
-            bTurret.ToggleFire();
+            lTurret.ToggleFire();
         }
     }
 }

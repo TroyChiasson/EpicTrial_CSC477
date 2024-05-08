@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 75538947536130267}
   - component: {fileID: 2090588213465635495}
-  - component: {fileID: 4390930501687404122}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -75,28 +74,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!102 &4390930501687404122
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424314378639780646}
-  m_Text: HI
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
 --- !u!1 &8880676337494127804
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +89,7 @@ GameObject:
   - component: {fileID: 8007482965996963945}
   - component: {fileID: 9019482691132686087}
   - component: {fileID: 840179058107962810}
-  - component: {fileID: 4803401430850540595}
+  - component: {fileID: 3059719296544089885}
   m_Layer: 0
   m_Name: MachineGun
   m_TagString: Enemy
@@ -221,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb7602d78e284c5a93e53326b968e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 20
+  attackRange: 13
   target: {fileID: 0}
 --- !u!195 &9019482691132686087
 NavMeshAgent:
@@ -272,7 +249,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &4803401430850540595
+--- !u!114 &3059719296544089885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,11 +258,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8880676337494127804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1da4a85a1d2f448838021c107ce403, type: 3}
+  m_Script: {fileID: 11500000, guid: 729c9bc8e8d1f024ab82590c98b35c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}
+  Drop: {fileID: 0}
   maxFireDelay: 2
   minFireDelay: 0.1
   fireRateCurve:
@@ -312,6 +290,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  attackRange: 20
+  attackRange: 13
   firingPoint: {fileID: 75538947536130267}
   player: {fileID: 0}

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainPlayer : MonoBehaviour
-{
+public class MainPlayer : MonoBehaviour {
 
     //WASD key pressed
     private bool up = false;
@@ -12,7 +11,16 @@ public class MainPlayer : MonoBehaviour
     private bool left = false;
     private bool right = false;
 
-    //how fast the player moves in x or y direction
+    //save old WASD presses (cannot move while dashing, remember what they were before dashing)
+    private bool oldUp = false;
+    private bool oldDown = false;
+    private bool oldLeft = false;
+    private bool oldRight = false;
+
+    //how fast the player is currently moving
+    private float activeMoveSpeed;
+
+    //how fast the player moves in x or y direction normally
     public static float playerSpeed = 10.0f;
 
     //when moving diagonally, multiply x and y speeds by this amount
@@ -21,16 +29,15 @@ public class MainPlayer : MonoBehaviour
     //player physics
     private Rigidbody rb;
 
-    //dash stuffs
-    private float activeMoveSpeed;
-    public float dashSpeed;
+    //how fast the player moves mid-dash
+    public float dashSpeed = 15f;
 
+    //length of dash and cooldown
     public float dashLength = .5f, dashCooldown = 1f;
-
     private float dashCounter;
     private float dashCoolCounter;
 
-    // Player Health 
+    //player health 
     public static int playerHealth;
     private int startHealth = 3;
     public GameObject heart1;
@@ -38,12 +45,40 @@ public class MainPlayer : MonoBehaviour
     public GameObject heart3;
 
     //start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
         activeMoveSpeed = playerSpeed;
         playerHealth = startHealth;
         UpdateHealthUI();
+    }
+
+    /**reduce player health by dmg**/
+    public void Damage(int dmg) {
+
+        //reduce health and update UI
+        playerHealth -= dmg;
+        UpdateHealthUI();
+
+        // Check if player health has reached zero
+        if (playerHealth <= 0) 
+        {
+            playerDeath();
+            StartCoroutine(LoadSceneAfterDelay("MainDeath"));
+           
+        }
+
+    }
+    public void playerDeath()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("Shield"));
+        rb.isKinematic = true;
+        //Play death sound here
+    }
+    IEnumerator LoadSceneAfterDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(5f); // Wait for 5 seconds
+        SceneManager.LoadScene(sceneName);
     }
 
     //update is called once per frame
@@ -62,73 +97,95 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
-        // Diagonal movement
-        if (up && left) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (up && right) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (down && left) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-        else if (down && right) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        //direction the player will move this frame
+        bool nowUp; bool nowDown; bool nowLeft; bool nowRight;
 
-        else {
-            // Straight x or y movement
-                // Y movement
-                if (up) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
-                else if (down) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
-                else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
-
-                // X movement
-                if (left) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
-                else if (right) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
-                else rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        //if dash counter is active, we move according to old movement values
+        if (dashCounter > 0) {
+            nowUp = oldUp;
+            nowDown = oldDown;
+            nowLeft = oldLeft;
+            nowRight = oldRight;
         }
 
+        //if dash counter is not active, move according to current movement values
+        else {
+            nowUp = up;
+            nowDown = down;
+            nowLeft = left;
+            nowRight = right;
+        }
 
-        //dash stuffs
+        //cannot move in opposite directions at once
+        if (nowUp && nowDown) { nowUp = nowDown = false; }
+        if (nowLeft && nowRight) { nowLeft = nowRight = false; }
 
-        if (Game.Instance.input.Default.Space.WasPressedThisFrame())
-        {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
-            {
+        //diagonal movement
+        if (nowUp && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (nowUp && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (nowDown && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        else if (nowDown && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+
+        //straight x or y movement
+        else {
+
+            //y
+            if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+            else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
+            else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+
+            //x
+            if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
+            else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
+            else rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+
+        //if spacebar was pressed, begin dash
+        if (Game.Instance.input.Default.Space.WasPressedThisFrame()) {
+
+            //ensure we arent already currently dashing or waiting for dash cool down
+            if (dashCoolCounter <= 0 && dashCounter <= 0) {
+
+                //begin dash
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
+
+                //remember directions before dash
+                oldUp = up;
+                oldDown = down;
+                oldLeft = left;
+                oldRight = right;
             }
         }
 
-        if(dashCounter > 0)
-        {
+        //mid-dash
+        if(dashCounter > 0) {
+
+            //decrement dash counter as time goes by
             dashCounter -= Time.deltaTime;
 
-            if (dashCounter <= 0)
-            {
+            //stop dash if dash counter is finished
+            if (dashCounter <= 0) {
                 activeMoveSpeed = playerSpeed;
                 dashCoolCounter = dashCooldown;
             }
         }
 
-        if(dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
+        //decrement dash cool down counter
+        if(dashCoolCounter > 0) { dashCoolCounter -= Time.deltaTime; }
     }
 
+    /**player collided with another object**/
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the collided object has the desired tag
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Explosion")) //Add explosion to the collision
-        {
-            // Reduce player health
-            playerHealth--;
-            UpdateHealthUI();
-
-            // Check if player health has reached zero
-            if (playerHealth <= 0)
-            {              
-                SceneManager.LoadScene("MainDeath");
-            }
+        //objects, bullets, and explosions deal 1 damage
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion")) {
+            Damage(1);
         }
     }
 
-    void UpdateHealthUI()
-    { 
+    /**update UI according to health**/
+    public void UpdateHealthUI() { 
         heart1.SetActive(playerHealth >= 1);
         heart2.SetActive(playerHealth >= 2);
         heart3.SetActive(playerHealth >= 3);

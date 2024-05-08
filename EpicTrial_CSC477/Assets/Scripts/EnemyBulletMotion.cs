@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMotion : MonoBehaviour
+public class EnemyBulletMotion : MonoBehaviour
 {
     public GameObject explosionPrefab; // Prefab of the explosion effect
 
@@ -17,12 +17,10 @@ public class BulletMotion : MonoBehaviour
     {
 
     }
-    void OnCollisionEnter(Collision other) {
+    //We only want the enemy bullet to affect the player, and destroy itself... damage is handled in player script
+    void OnCollisionEnter(Collision other) 
+    {
             Destroy(this.gameObject);
-            if (other.gameObject.tag == "Enemy") {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(other.gameObject);
-            }
     }
-   
+     
 }

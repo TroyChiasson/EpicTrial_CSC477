@@ -49,9 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onLight: {fileID: 2100000, guid: 6bf27505d08c8124a913cce8f0f54669, type: 2}
   buttonLight: {fileID: 5716766181448975474}
-  bts:
+  bulletTurrets:
   - {fileID: 0}
-  ds:
+  laserTurrets:
+  - {fileID: 0}
+  doors:
   - {fileID: 0}
 --- !u!1 &3839513133723003167
 GameObject:

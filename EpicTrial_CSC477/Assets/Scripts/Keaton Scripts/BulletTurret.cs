@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BulletTurret : MonoBehaviour
-{
+public class BulletTurret : MonoBehaviour {
 
     public Transform player;
 

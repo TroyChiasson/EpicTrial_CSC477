@@ -11,11 +11,14 @@ TagManager:
   - Wall
   - PlayerHitbox
   - Explosion
+  - Missle
+  - ShieldBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
