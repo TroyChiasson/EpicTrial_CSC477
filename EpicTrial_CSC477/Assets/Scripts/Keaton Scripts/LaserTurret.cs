@@ -81,8 +81,9 @@ public class LaserTurret : MonoBehaviour {
     }
 
     public void Deactivate() {
+        laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
         renderer.material = offMaterial;
-        activated = false;
+        activated = shoot = flickerEnabled = fireCharge = false;
     }
 
     public void ToggleInLaser() { inLaser = !inLaser; }
