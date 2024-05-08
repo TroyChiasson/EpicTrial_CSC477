@@ -46,6 +46,7 @@ public class LaserTurret : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        renderer = turretHead.GetComponent<MeshRenderer>();
         laserRenderer = laser.GetComponent<MeshRenderer>();
         laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
         laserMaxWidth = laser.transform.localScale.y;

@@ -7,9 +7,9 @@ public class Button : MonoBehaviour {
     public Material onLight;
     public GameObject buttonLight;
     private MeshRenderer renderer;
-    public BulletTurret[] bts;
-    public LaserTurret[] lts;
-    public Door[] ds;
+    public BulletTurret[] bulletTurrets;
+    public LaserTurret[] laserTurrets;
+    public Door[] doors;
 
     // Start is called before the first frame update
     void Start() {
@@ -17,9 +17,9 @@ public class Button : MonoBehaviour {
     }
 
     public void TurnOn() {
-        for (int i = 0; i < bts.Length; i++) { bts[i].Deactivate(); }
-        for (int i = 0; i < lts.Length; i++) { lts[i].Deactivate(); }
-        for (int i=0; i < ds.Length; i++) { ds[i].Open(); }
+        for (int i = 0; i < bulletTurrets.Length; i++) { bulletTurrets[i].Deactivate(); }
+        for (int i = 0; i < laserTurrets.Length; i++) { laserTurrets[i].Deactivate(); Debug.Log("deactivated:"+i.ToString()); }
+        for (int i = 0; i < doors.Length; i++) { doors[i].Open(); }
         renderer.material = onLight;
     }
 }
