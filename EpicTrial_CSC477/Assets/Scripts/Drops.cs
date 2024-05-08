@@ -25,18 +25,8 @@ public class Drops : MainPlayer
         }
     }
 
-    IEnumerator SpeedUp() { // Use StartCoroutine(SpeedUp()); to use it.
-        MainPlayer.playerSpeed = 10f;
-        print("Hi");
-        yield return new WaitForSeconds(5f);
-        print("bye");
-        MainPlayer.playerSpeed = 5f;
-        Destroy(this.gameObject);
-    }
-
     void HealthUp() {
         playerHealth++;
-        UpdateHealthUI();
         Destroy(this.gameObject);
     }
 }

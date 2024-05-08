@@ -13,7 +13,7 @@ public class MainPlayer : MonoBehaviour
     private bool right = false;
 
     //how fast the player moves in x or y direction
-    public static float playerSpeed = 5.0f;
+    public static float playerSpeed = 10.0f;
 
     //when moving diagonally, multiply x and y speeds by this amount
     private const float DIAGMULT = 0.75f;
@@ -49,6 +49,7 @@ public class MainPlayer : MonoBehaviour
     //update is called once per frame
     void Update()
     {
+        UpdateHealthUI();
         //movement keys being pressed
         if (Game.Instance.input.Default.Up.WasPressedThisFrame()) { up = true; }
         if (Game.Instance.input.Default.Down.WasPressedThisFrame()) { down = true; }
@@ -126,7 +127,7 @@ public class MainPlayer : MonoBehaviour
         }
     }
 
-    public void UpdateHealthUI()
+    void UpdateHealthUI()
     { 
         heart1.SetActive(playerHealth >= 1);
         heart2.SetActive(playerHealth >= 2);
