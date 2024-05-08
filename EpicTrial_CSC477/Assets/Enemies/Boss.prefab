@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6926138317132334892}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Explosion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,9 @@ GameObject:
   - component: {fileID: 8007482965996963945}
   - component: {fileID: 9019482691132686087}
   - component: {fileID: 840179058107962810}
-  - component: {fileID: 8493688904320387537}
+  - component: {fileID: 4803401430850540595}
   m_Layer: 0
-  m_Name: Bomber
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb7602d78e284c5a93e53326b968e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0
+  attackRange: 13
   target: {fileID: 0}
 --- !u!195 &9019482691132686087
 NavMeshAgent:
@@ -233,7 +233,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.5000001
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -272,7 +272,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &8493688904320387537
+--- !u!114 &4803401430850540595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,9 +281,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 8880676337494127804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bbf49d05343b234c9a21ee5b446a0bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a1da4a85a1d2f448838021c107ce403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseTime: 5
-  explosionRadius: 2
-  explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
+    type: 3}
+  maxFireDelay: 5
+  minFireDelay: 1
+  fireRateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 100
+      inSlope: -102.350586
+      outSlope: -102.350586
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9768982
+      value: 0.013900757
+      inSlope: -102.350586
+      outSlope: -102.350586
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackRange: 13
+  firingPoint: {fileID: 75538947536130267}
+  player: {fileID: 0}

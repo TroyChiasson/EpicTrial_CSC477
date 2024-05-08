@@ -26,19 +26,15 @@ public class EnemyMovement : MonoBehaviour
             // Stop movement if close enough to attack
             navMeshAgent.isStopped = true;
 
-            transform.LookAt(target);
+            // Look at the player on the Y-axis only
+            Vector3 lookDir = new Vector3(target.position.x - transform.position.x, target.position.y - transform.position.y, 0f);
+            lookDir.Normalize();
+            transform.rotation = Quaternion.LookRotation(lookDir);
         }
         else
         {
-            // Continue movement if close enough to attack
+            // Continue movement if not in attack range
             navMeshAgent.isStopped = false;
-
-            
-        }
-
-        if (target != null)
-        {
-            // Move the enemy towards the player's position
             navMeshAgent.SetDestination(target.position);
         }
     }

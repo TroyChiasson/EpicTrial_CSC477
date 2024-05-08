@@ -21,7 +21,7 @@ public class MainPlayer : MonoBehaviour {
     private float activeMoveSpeed;
 
     //how fast the player moves in x or y direction normally
-    public static float playerSpeed = 5.0f;
+    public static float playerSpeed = 10.0f;
 
     //when moving diagonally, multiply x and y speeds by this amount
     private const float DIAGMULT = 0.75f;
