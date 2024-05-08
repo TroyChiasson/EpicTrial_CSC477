@@ -13,7 +13,7 @@ public class MainPlayer : MonoBehaviour
     private bool right = false;
 
     //how fast the player moves in x or y direction
-    public float playerSpeed = 5.0f;
+    public static float playerSpeed = 5.0f;
 
     //when moving diagonally, multiply x and y speeds by this amount
     private const float DIAGMULT = 0.75f;
@@ -31,7 +31,7 @@ public class MainPlayer : MonoBehaviour
     private float dashCoolCounter;
 
     // Player Health 
-    public int playerHealth;
+    public static int playerHealth;
     private int startHealth = 3;
     public GameObject heart1;
     public GameObject heart2;
@@ -126,7 +126,7 @@ public class MainPlayer : MonoBehaviour
         }
     }
 
-    void UpdateHealthUI()
+    public void UpdateHealthUI()
     { 
         heart1.SetActive(playerHealth >= 1);
         heart2.SetActive(playerHealth >= 2);

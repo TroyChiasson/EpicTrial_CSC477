@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyTest1 : MonoBehaviour
 {
     public GameObject BulletTest;
+    public GameObject Drop;
     public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
     public float minFireDelay = 1.0f; // Minimum time between shots (close range)
     public AnimationCurve fireRateCurve; // Curve to adjust fire delay based on distance
@@ -51,9 +52,17 @@ public class EnemyTest1 : MonoBehaviour
 
     void fireBullet()
     {
-        Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y + 1.1f, firingPoint.position.z);
+        Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
         Vector3 direction = player.position - firingPoint.position; // Shoot towards player
         firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
+    }
+
+    void OnDestroy() {
+        Vector3 enemyPosDrop = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
+        float dropChance = Random.value;
+        if (dropChance < 1f){
+            GameObject drop = Instantiate(Drop, enemyPosDrop, Quaternion.identity);
+        }
     }
 }
