@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class LaserTurret : MonoBehaviour {
+public class BossLaser : MonoBehaviour
+{
 
     public Transform playerTrans;
     public MainPlayer player;
@@ -12,14 +13,14 @@ public class LaserTurret : MonoBehaviour {
 
     private List<GameObject> destroyList = new List<GameObject>();
 
-    public float turnSpeed = 1f;
+    private float turnSpeed = 2f;
 
     private bool fireEnabled = false;
     private float fireSpeed = 3f;
     private float fireTime = 0;
     private bool fireCharge = false;
-    public float chargeSpeed = 3f;
-    public float chargeTime = 0;
+    private float chargeSpeed = 3f;
+    private float chargeTime = 0;
     private bool flickerEnabled = false;
     private bool flickerIsWhite = false;
     private float flickerSpeed = 0.05f;
@@ -30,7 +31,7 @@ public class LaserTurret : MonoBehaviour {
     private float shootSpeed = 0.3f;
     private float shootTime = 0;
 
-    public float laserMaxWidth;
+    private float laserMaxWidth;
 
     public Transform firingPoint;
     public GameObject BulletTest;
@@ -45,7 +46,8 @@ public class LaserTurret : MonoBehaviour {
     private bool inLaser = false;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         renderer = turretHead.GetComponent<MeshRenderer>();
         laserRenderer = laser.GetComponent<MeshRenderer>();
         laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
@@ -53,18 +55,23 @@ public class LaserTurret : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (!activated) { return; }
         Turn(DetermineAngle());
         CycleFiring();
 
-        if (shoot) {
-            if (inLaser) {
+        if (shoot)
+        {
+            if (inLaser)
+            {
                 player.Damage(3);
             }
 
-            if (destroyList.Count > 0) {
-                foreach (var obj in destroyList) {
+            if (destroyList.Count > 0)
+            {
+                foreach (var obj in destroyList)
+                {
                     Destroy(obj);
                 }
                 destroyList = new List<GameObject>();
@@ -72,15 +79,18 @@ public class LaserTurret : MonoBehaviour {
         }
     }
 
-    public void AddDestroyList(GameObject obj) {
+    public void AddDestroyList(GameObject obj)
+    {
         destroyList.Add(obj);
     }
 
-    public void RemoveDestroyList(GameObject obj) {
+    public void RemoveDestroyList(GameObject obj)
+    {
         destroyList.Remove(obj);
     }
 
-    public void Deactivate() {
+    public void Deactivate()
+    {
         laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
         renderer.material = offMaterial;
         activated = shoot = flickerEnabled = fireCharge = false;
@@ -90,33 +100,41 @@ public class LaserTurret : MonoBehaviour {
 
     public void ToggleFire() { fireEnabled = !fireEnabled; }
 
-    public void CycleFiring() {
+    public void CycleFiring()
+    {
 
-        if (shoot) {
+        if (shoot)
+        {
 
-            if (shootTime >= shootSpeed) {
+            if (shootTime >= shootSpeed)
+            {
                 shootTime = 0;
                 shoot = false;
                 laser.transform.SetLocalScale(y: 0);
             }
 
-            else {
+            else
+            {
                 shootTime += Time.deltaTime;
                 var scale = laserMaxWidth * (shootSpeed - shootTime) / shootSpeed;
                 laser.transform.SetLocalScale(y: scale);
             }
         }
 
-        if (flickerEnabled) {
+        if (flickerEnabled)
+        {
 
-            if (flickerTime >= flickerSpeed) {
+            if (flickerTime >= flickerSpeed)
+            {
                 flickerTime = 0;
                 flickers++;
-                if (flickerIsWhite) {
+                if (flickerIsWhite)
+                {
                     flickerIsWhite = false;
                     laserRenderer.material.color = Color.black;
                 }
-                else {
+                else
+                {
                     flickerIsWhite = true;
                     laserRenderer.material.color = Color.white;
                 }
@@ -124,7 +142,8 @@ public class LaserTurret : MonoBehaviour {
 
             else { flickerTime += Time.deltaTime; }
 
-            if (flickers >= flickerCount) {
+            if (flickers >= flickerCount)
+            {
                 flickerEnabled = false;
                 laserRenderer.material.color = Color.red;
                 shoot = true;
@@ -133,9 +152,11 @@ public class LaserTurret : MonoBehaviour {
             return;
         }
 
-        if (fireCharge) {
+        if (fireCharge)
+        {
 
-            if (chargeTime >= chargeSpeed) {
+            if (chargeTime >= chargeSpeed)
+            {
                 chargeTime = 0;
                 fireCharge = false;
                 laserRenderer.material.color = Color.white;
@@ -145,7 +166,8 @@ public class LaserTurret : MonoBehaviour {
                 laser.transform.SetLocalScale(y: laserMaxWidth);
             }
 
-            else {
+            else
+            {
                 var alpha = chargeTime / chargeSpeed / 3;
                 var scale = laserMaxWidth * chargeTime / chargeSpeed;
                 laserRenderer.material.color = SetAlpha(laserRenderer.material.color, alpha);
@@ -160,7 +182,8 @@ public class LaserTurret : MonoBehaviour {
         if (!fireEnabled) { return; }
 
         //fire if firespeed has passed
-        if (fireTime >= fireSpeed) {
+        if (fireTime >= fireSpeed)
+        {
             fireTime = 0;
             fireCharge = true;
             laserRenderer.material.color = Color.cyan;
@@ -173,7 +196,8 @@ public class LaserTurret : MonoBehaviour {
     }
 
     /**determine the angle that the turret should rotate to to point towards the player**/
-    private float DetermineAngle() {
+    private float DetermineAngle()
+    {
 
         //trig to find angle between turret and player
         float xdif = playerTrans.position.x - turretHead.transform.position.x;
@@ -192,12 +216,14 @@ public class LaserTurret : MonoBehaviour {
     }
 
     /**turn smoothly to a target angle**/
-    private void Turn(float angle) {
+    private void Turn(float angle)
+    {
         Quaternion targetAngle = Quaternion.Euler(0, 0, -angle);
         turretHead.transform.rotation = Quaternion.Slerp(turretHead.transform.rotation, targetAngle, Time.deltaTime * turnSpeed);
     }
 
-    private Color SetAlpha(Color color, float alpha) {
+    private Color SetAlpha(Color color, float alpha)
+    {
         color.a = alpha;
         return color;
     }
