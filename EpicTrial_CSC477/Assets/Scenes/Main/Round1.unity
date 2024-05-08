@@ -2042,11 +2042,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2db116c9c9c9b4ea06e71451447660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
-  dashSpeed: 30
+  dashSpeed: 15
   dashLength: 0.5
   dashCooldown: 1
-  playerHealth: 0
   heart1: {fileID: 1976528158}
   heart2: {fileID: 1171181048}
   heart3: {fileID: 516770079}

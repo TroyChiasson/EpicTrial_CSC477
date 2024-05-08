@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2db116c9c9c9b4ea06e71451447660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 30
+  dashSpeed: 15
   dashLength: 0.5
   dashCooldown: 1
   heart1: {fileID: 1976528158}
@@ -2253,6 +2253,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442377082}
   m_CullTransparentMesh: 1
+--- !u!114 &1460878157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3674373140409492534, guid: de43b6989fd580d4b8186117ee46c466,
+    type: 3}
+  m_PrefabInstance: {fileID: 8481375936597683521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96360647b125734429cf0836217b5504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1477023573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,12 +2877,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
-      propertyPath: ds.Array.data[0]
+      propertyPath: doors.Array.data[0]
       value: 
       objectReference: {fileID: 636433731}
     - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
-      propertyPath: bts.Array.data[0]
+      propertyPath: laserTurrets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1460878157}
+    - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: bulletTurrets.Array.data[0]
       value: 
       objectReference: {fileID: 704724220}
     - target: {fileID: 7336431304430836967, guid: ef1315adc34fe954cb85b04d05e82f46,

@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e59e7f00e293459a39cdee8473779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionDelay: 2
+  img: {fileID: 0}
 --- !u!4 &115025667
 Transform:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e59e7f00e293459a39cdee8473779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionDelay: 2
+  img: {fileID: 0}
 --- !u!64 &441564953
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1735,11 +1735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2db116c9c9c9b4ea06e71451447660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
-  dashSpeed: 30
+  dashSpeed: 15
   dashLength: 0.5
   dashCooldown: 1
-  playerHealth: 0
   heart1: {fileID: 1976528158}
   heart2: {fileID: 1171181048}
   heart3: {fileID: 516770079}
