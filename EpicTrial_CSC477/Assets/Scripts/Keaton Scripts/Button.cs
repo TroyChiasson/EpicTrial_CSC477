@@ -7,13 +7,14 @@ public class Button : MonoBehaviour {
     public Material onLight;
     public GameObject buttonLight;
     private MeshRenderer renderer;
-    public BulletTurret[] bulletTurrets;
-    public LaserTurret[] laserTurrets;
-    public Door[] doors;
+    public BulletTurret[] bulletTurrets = null;
+    public LaserTurret[] laserTurrets = null;
+    public Door[] doors = null;
 
     // Start is called before the first frame update
     void Start() {
         renderer = buttonLight.GetComponent<MeshRenderer>();
+        Debug.Log(laserTurrets.Length);
     }
 
     public void TurnOn() {

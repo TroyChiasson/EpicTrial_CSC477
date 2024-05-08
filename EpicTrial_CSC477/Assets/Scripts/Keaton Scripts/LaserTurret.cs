@@ -15,7 +15,7 @@ public class LaserTurret : MonoBehaviour {
     private float turnSpeed = 1f;
 
     private bool fireEnabled = false;
-    private float fireSpeed = 5f;
+    private float fireSpeed = 3f;
     private float fireTime = 0;
     private bool fireCharge = false;
     private float chargeSpeed = 3f;

@@ -612,6 +612,21 @@ PrefabInstance:
       propertyPath: bts.Array.data[0]
       value: 
       objectReference: {fileID: 1086349074}
+    - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: doors.Array.data[0]
+      value: 
+      objectReference: {fileID: 464024560}
+    - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: laserTurrets.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: bulletTurrets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1086349074}
     - target: {fileID: 7336431304430836967, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
       propertyPath: m_LocalPosition.x
