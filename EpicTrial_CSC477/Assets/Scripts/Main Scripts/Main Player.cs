@@ -97,23 +97,28 @@ public class MainPlayer : MonoBehaviour {
             nowRight = right;
         }
 
-        // Diagonal movement
+        //cannot move in opposite directions at once
+        if (nowUp && nowDown) { nowUp = nowDown = false; }
+        if (nowLeft && nowRight) { nowLeft = nowRight = false; }
+
+        //diagonal movement
         if (nowUp && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
         else if (nowUp && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
         else if (nowDown && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
         else if (nowDown && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
 
+        //straight x or y movement
         else {
-            // Straight x or y movement
-                // Y movement
-                if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
-                else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
-                else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
-                // X movement
-                if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
-                else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
-                else rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            //y
+            if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+            else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
+            else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+
+            //x
+            if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
+            else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
+            else rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
 
         //if spacebar was pressed, begin dash
