@@ -12,6 +12,11 @@ public class MainPlayer : MonoBehaviour
     private bool left = false;
     private bool right = false;
 
+    private bool oldUp = false;
+    private bool oldDown = false;
+    private bool oldLeft = false;
+    private bool oldRight = false;
+
     //how fast the player moves in x or y direction
     public static float playerSpeed = 5.0f;
 
@@ -69,22 +74,36 @@ public class MainPlayer : MonoBehaviour
         if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
         if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
+        bool nowUp; bool nowDown; bool nowLeft; bool nowRight;
+        if (dashCounter > 0) {
+            nowUp = oldUp;
+            nowDown = oldDown;
+            nowLeft = oldLeft;
+            nowRight = oldRight;
+        }
+        else {
+            nowUp = up;
+            nowDown = down;
+            nowLeft = left;
+            nowRight = right;
+        }
+
         // Diagonal movement
-        if (up && left) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (up && right) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (down && left) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-        else if (down && right) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        if (nowUp && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (nowUp && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+        else if (nowDown && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+        else if (nowDown && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
 
         else {
             // Straight x or y movement
                 // Y movement
-                if (up) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
-                else if (down) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
+                if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+                else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
                 else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
                 // X movement
-                if (left) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
-                else if (right) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
+                if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
+                else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
                 else rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
 
@@ -97,6 +116,11 @@ public class MainPlayer : MonoBehaviour
             {
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
+
+                oldUp = up;
+                oldDown = down;
+                oldLeft = left;
+                oldRight = right;
             }
         }
 
