@@ -438,8 +438,8 @@ GameObject:
   - component: {fileID: 6278620292531550402}
   - component: {fileID: 7451400494397249276}
   - component: {fileID: 9028828101192974545}
-  - component: {fileID: 2264321844975323551}
   - component: {fileID: 109471601165322686}
+  - component: {fileID: 4678052421742750314}
   m_Layer: 0
   m_Name: Turret Trigger
   m_TagString: Untagged
@@ -491,20 +491,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2264321844975323551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3375405256333985980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f2259ede3d22143b295b4c26a95d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bTurret: {fileID: 0}
-  lTurret: {fileID: 3674373140409492534}
 --- !u!23 &109471601165322686
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -547,6 +533,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4678052421742750314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3375405256333985980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aee7e3dc91f9354f96bf8928d216573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lTurret: {fileID: 3674373140409492534}
 --- !u!1 &3790977242556878107
 GameObject:
   m_ObjectHideFlags: 0

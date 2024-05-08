@@ -18,7 +18,7 @@ public class Button : MonoBehaviour {
 
     public void TurnOn() {
         for (int i = 0; i < bulletTurrets.Length; i++) { bulletTurrets[i].Deactivate(); }
-        for (int i = 0; i < laserTurrets.Length; i++) { laserTurrets[i].Deactivate(); Debug.Log("deactivated:"+i.ToString()); }
+        for (int i = 0; i < laserTurrets.Length; i++) { laserTurrets[i].Deactivate(); }
         for (int i = 0; i < doors.Length; i++) { doors[i].Open(); }
         renderer.material = onLight;
     }
