@@ -160,7 +160,7 @@ public class MainPlayer : MonoBehaviour {
     void OnCollisionEnter(Collision collision)
     {
         //objects, bullets, and explosions deal 1 damage
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Explosion")) {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion")) {
             Damage(1);
         }
     }

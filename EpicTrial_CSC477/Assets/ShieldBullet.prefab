@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7067961680934764103}
   - component: {fileID: 2140337608758636125}
-  - component: {fileID: 887864625954801668}
+  - component: {fileID: 4659050909374823833}
   - component: {fileID: 983653356570180130}
   m_Layer: 0
-  m_Name: Bullettest
-  m_TagString: Bullet
+  m_Name: ShieldBullet
+  m_TagString: ShieldBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 72
   m_CollisionDetection: 0
---- !u!114 &887864625954801668
+--- !u!114 &4659050909374823833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 474032302994295501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d58454df5893ad44f91d10eaf555ccc3, type: 3}
+  m_Script: {fileID: 11500000, guid: face8f26ccec7e642b04435a09b04a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 139366, guid: 59050939c00b3624d8b406b1a57fca9d, type: 3}
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.9764706, b: 0.08802941, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

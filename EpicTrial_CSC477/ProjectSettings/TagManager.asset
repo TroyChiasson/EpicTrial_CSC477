@@ -12,6 +12,8 @@ TagManager:
   - PlayerHitbox
   - Explosion
   - Missle
+  - ShieldBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
