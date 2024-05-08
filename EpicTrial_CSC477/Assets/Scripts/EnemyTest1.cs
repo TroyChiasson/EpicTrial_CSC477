@@ -47,6 +47,8 @@ public class EnemyTest1 : MonoBehaviour
         }
     }
 
+
+
     void fireBullet()
     {
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y + 1.1f, firingPoint.position.z);
