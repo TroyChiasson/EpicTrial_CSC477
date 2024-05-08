@@ -20,7 +20,16 @@ public class EnemyBulletMotion : MonoBehaviour
     //We only want the enemy bullet to affect the player, and destroy itself... damage is handled in player script
     void OnCollisionEnter(Collision other) 
     {
+        if(other.gameObject.tag != "Boss")
+        {
             Destroy(this.gameObject);
+        }
+
+        //THIS IS FOR BUG PURPOSES
+        if (other.gameObject.tag == "Boss")
+        {
+            Destroy(this.gameObject, 4);
+        }
     }
-     
+
 }

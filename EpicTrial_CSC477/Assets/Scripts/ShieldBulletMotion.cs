@@ -27,10 +27,6 @@ public class ShieldBulletMotion : MonoBehaviour
         Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Boss")
-        {
-        print("Boss hit");
-        }
     }
    
 }

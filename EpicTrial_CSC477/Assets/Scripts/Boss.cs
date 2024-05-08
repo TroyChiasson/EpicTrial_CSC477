@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class BossAi : MonoBehaviour
+public class Boss : MonoBehaviour
 {
+
+    public Transform target; // Reference to the player's transform
     public GameObject BulletTest;
     public GameObject Drop;
     public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
@@ -14,9 +17,16 @@ public class BossAi : MonoBehaviour
     public Transform player; // Assign the player transform in the inspector
 
     private float fireTime = 0f;
+    public int bossHealth = 100; // Added boss health
 
     void Start()
     {
+       
+        if (target == null)
+        {
+            // If the target is not set, try to find the player
+            target = GameObject.FindGameObjectWithTag("MainPlayer").transform;
+        }
         // Ensure fireRateCurve exists (optional)
         if (fireRateCurve == null)
         {
@@ -27,6 +37,18 @@ public class BossAi : MonoBehaviour
     void Update()
     {
         Fire();
+
+        float distanceToPlayer = Vector3.Distance(transform.position, target.position);
+
+        if (distanceToPlayer <= attackRange)
+        {
+
+            // Look at the player on the Y-axis only
+            Vector3 lookDir = new Vector3(target.position.x - transform.position.x, target.position.y - transform.position.y, 0f);
+            lookDir.Normalize();
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
+
     }
 
     void Fire()
@@ -48,14 +70,33 @@ public class BossAi : MonoBehaviour
         }
     }
 
-
-
     void fireBullet()
     {
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
         Vector3 direction = player.position - firingPoint.position; // Shoot towards player
         firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check for collision with ShieldBullet tag
+        if (collision.gameObject.CompareTag("ShieldBullet"))
+        {
+            TakeDamage(10); // Take damage from ShieldBullet
+        }
+    }
+
+    void TakeDamage(int damage)
+    {
+        bossHealth -= damage;
+
+        // Check if boss is dead (optional)
+        if (bossHealth <= 0)
+        {
+            Destroy(this.gameObject);
+            // Add additional logic for boss death here
+        }
     }
 
     void OnDestroy()
