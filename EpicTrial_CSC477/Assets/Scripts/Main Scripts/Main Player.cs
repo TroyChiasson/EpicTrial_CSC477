@@ -112,7 +112,7 @@ public class MainPlayer : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Check if the collided object has the desired tag
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet")) //Add explosion to the collision
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Explosion")) //Add explosion to the collision
         {
             // Reduce player health
             playerHealth--;

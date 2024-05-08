@@ -286,5 +286,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseTime: 5
   explosionRadius: 2
-  explosionPrefab: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
-    type: 3}
+  explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}

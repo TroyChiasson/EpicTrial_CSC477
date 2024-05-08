@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Wall
   - PlayerHitbox
+  - Explosion
   layers:
   - Default
   - TransparentFX
