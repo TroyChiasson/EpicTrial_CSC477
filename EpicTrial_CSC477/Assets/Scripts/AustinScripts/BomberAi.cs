@@ -31,8 +31,10 @@ public class BomberAi : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+       
         if (collision.gameObject == player && !exploded) // Check collision with player
         {
+            print("Yep");
             Explode();
         }
     }
