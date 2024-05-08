@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/MainMenu.unity
     guid: 473a970da9c77574e9c18d60980365ed
   - enabled: 1
-    path: Assets/Scenes/Main/MainGame.unity
+    path: Assets/Scenes/Main/Round1.unity
     guid: ac8aded98b0646c42b2d127e3db2100c
+  - enabled: 1
+    path: Assets/Scenes/Main/Round2.unity
+    guid: d1ba465ee29b05d4881858615eb9a24b
   - enabled: 1
     path: Assets/Scenes/Main/MainDeath.unity
     guid: 2cf2676bcf369924ab03c79fe5198058
