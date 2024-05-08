@@ -5,9 +5,12 @@ using System;
 
 public class LaserTurret : MonoBehaviour {
 
-    public Transform player;
+    public Transform playerTrans;
+    public MainPlayer player;
 
     private bool activated = true;
+
+    private List<GameObject> destroyList = new List<GameObject>();
 
     private float turnSpeed = 1f;
 
@@ -39,6 +42,8 @@ public class LaserTurret : MonoBehaviour {
     private MeshRenderer renderer;
     public Material offMaterial;
 
+    private bool inLaser = false;
+
     // Start is called before the first frame update
     void Start() {
         laserRenderer = laser.GetComponent<MeshRenderer>();
@@ -51,12 +56,37 @@ public class LaserTurret : MonoBehaviour {
         if (!activated) { return; }
         Turn(DetermineAngle());
         CycleFiring();
+
+        if (shoot) {
+            if (inLaser) {
+                player.Damage(3);
+            }
+
+            if (destroyList.Count > 0) {
+                foreach (var obj in destroyList) {
+                    Destroy(obj);
+                }
+                destroyList = new List<GameObject>();
+            }
+
+            
+        }
+    }
+
+    public void AddDestroyList(GameObject obj) {
+        destroyList.Add(obj);
+    }
+
+    public void RemoveDestroyList(GameObject obj) {
+        destroyList.Remove(obj);
     }
 
     public void Deactivate() {
         renderer.material = offMaterial;
         activated = false;
     }
+
+    public void ToggleInLaser() { inLaser = !inLaser; }
 
     public void ToggleFire() { fireEnabled = !fireEnabled; }
 
@@ -146,8 +176,8 @@ public class LaserTurret : MonoBehaviour {
     private float DetermineAngle() {
 
         //trig to find angle between turret and player
-        float xdif = player.position.x - turretHead.transform.position.x;
-        float ydif = player.position.y - turretHead.transform.position.y;
+        float xdif = playerTrans.position.x - turretHead.transform.position.x;
+        float ydif = playerTrans.position.y - turretHead.transform.position.y;
         float radians = (float)Math.Atan2(xdif, ydif);
         float angle = radians * (float)(180 / Math.PI);
 

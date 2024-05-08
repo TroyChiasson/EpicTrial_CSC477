@@ -46,6 +46,14 @@ public class MainPlayer : MonoBehaviour
         UpdateHealthUI();
     }
 
+    public void Damage(int dmg) {
+        playerHealth -= dmg;
+        UpdateHealthUI();
+
+        // Check if player health has reached zero
+        if (playerHealth <= 0) { SceneManager.LoadScene("MainDeath"); }
+    }
+
     //update is called once per frame
     void Update()
     {
@@ -115,14 +123,7 @@ public class MainPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Explosion")) //Add explosion to the collision
         {
             // Reduce player health
-            playerHealth--;
-            UpdateHealthUI();
-
-            // Check if player health has reached zero
-            if (playerHealth <= 0)
-            {              
-                SceneManager.LoadScene("MainDeath");
-            }
+            Damage(1);
         }
     }
 
