@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class BomberAi : MonoBehaviour
 {
+    public GameObject Drop;
     public float fuseTime = 5.0f; // Time until explosion (seconds)
     public float explosionRadius = 5.0f; // Radius of the explosion
     public GameObject explosionPrefab; // Prefab of the explosion effect
@@ -59,6 +60,14 @@ public class BomberAi : MonoBehaviour
 
             // Destroy the bomber
             Destroy(gameObject);
+        }
+    }
+    void OnDestroy() {
+        if (!exploded) {
+            float dropChance = Random.value;
+            if (dropChance < .5f){
+                GameObject drop = Instantiate(Drop, transform.position, Quaternion.identity);
+            }
         }
     }
 }
