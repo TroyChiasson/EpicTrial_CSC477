@@ -15,6 +15,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Round2.unity
     guid: d1ba465ee29b05d4881858615eb9a24b
   - enabled: 1
+    path: Assets/Scenes/Main/Round3_Puz.unity
+    guid: d52b2aa78a49e2a4dac57219e9dc1892
+  - enabled: 1
+    path: Assets/Scenes/Main/Round4.unity
+    guid: 0c9d25c196dcbe344a265be7c09d3084
+  - enabled: 1
+    path: Assets/Scenes/Main/Round5.unity
+    guid: d0499a989fb40e040bde9054c512978c
+  - enabled: 1
+    path: Assets/Scenes/Main/Round6_Out.unity
+    guid: 477906504dab1104197f996505a7950d
+  - enabled: 1
+    path: Assets/Scenes/Main/Round7_Boss.unity
+    guid: a08d490f49e9ea940b29bde882e93d9d
+  - enabled: 1
+    path: Assets/Scenes/Main/Round8_Endless.unity
+    guid: 6a6c58cb7aa2a2948ba1db953f53036e
+  - enabled: 1
     path: Assets/Scenes/Main/MainDeath.unity
     guid: 2cf2676bcf369924ab03c79fe5198058
   m_configObjects: {}

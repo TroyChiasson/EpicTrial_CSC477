@@ -19,8 +19,9 @@ public class Game : MonoBehaviour {
     void Update()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
 
-        if (enemies.Length == 0)
+        if (enemies.Length == 0 && bosses.Length == 0)
         {
             ProgressToNextScene();
         }

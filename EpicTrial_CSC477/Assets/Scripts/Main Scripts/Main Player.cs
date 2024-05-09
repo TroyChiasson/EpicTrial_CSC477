@@ -21,7 +21,7 @@ public class MainPlayer : MonoBehaviour {
     private float activeMoveSpeed;
 
     //how fast the player moves in x or y direction normally
-    public static float playerSpeed = 10.0f;
+    public static float playerSpeed = 15.0f;
 
     //when moving diagonally, multiply x and y speeds by this amount
     private const float DIAGMULT = 0.75f;
@@ -36,6 +36,7 @@ public class MainPlayer : MonoBehaviour {
     public float dashLength = .5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
+    private bool isDashing = false;
 
     //player health 
     public static int playerHealth;
@@ -160,7 +161,7 @@ public class MainPlayer : MonoBehaviour {
 
         //mid-dash
         if(dashCounter > 0) {
-
+            isDashing = true;
             //decrement dash counter as time goes by
             dashCounter -= Time.deltaTime;
 
@@ -170,6 +171,10 @@ public class MainPlayer : MonoBehaviour {
                 dashCoolCounter = dashCooldown;
             }
         }
+        else
+        {
+            isDashing = false;
+        }
 
         //decrement dash cool down counter
         if(dashCoolCounter > 0) { dashCoolCounter -= Time.deltaTime; }
@@ -178,9 +183,13 @@ public class MainPlayer : MonoBehaviour {
     /**player collided with another object**/
     void OnCollisionEnter(Collision collision)
     {
-        //objects, bullets, and explosions deal 1 damage
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion")) {
-            Damage(1);
+        if (!isDashing)
+        {
+            //objects, bullets, and explosions deal 1 damage
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion"))
+            {
+                Damage(1);
+            }
         }
     }
 
