@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public Transform target; // Reference to the player's transform
     public GameObject BulletTest;
     public GameObject Drop;
+    public GameObject Phase3;
     public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
     public float minFireDelay = 1.0f; // Minimum time between shots (close range)
     public AnimationCurve fireRateCurve; // Curve to adjust fire delay based on distance
@@ -58,6 +59,16 @@ public class Boss : MonoBehaviour
                 transform.Rotate(Vector3.up * 200 * Time.deltaTime);
                 maxFireDelay = .5f;
                 minFireDelay = .1f;
+            }
+
+            //Phase 3
+            if (bossHealth < 3)
+            {
+
+                //Spawn walls that rotate around boss
+                Phase3.SetActive(true);
+                maxFireDelay = .25f;
+                minFireDelay = .05f;
             }
            
         }

@@ -15,6 +15,7 @@ TagManager:
   - ShieldBullet
   - EnemyBullet
   - Boss
+  - Phase3
   layers:
   - Default
   - TransparentFX
