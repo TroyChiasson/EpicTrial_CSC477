@@ -62,7 +62,7 @@ public class EnemyTest1 : MonoBehaviour
     void OnDestroy() {
         Vector3 enemyPosDrop = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         float dropChance = Random.value;
-        if (dropChance < 1f){
+        if (dropChance < .1f){
             GameObject drop = Instantiate(Drop, enemyPosDrop, Quaternion.identity);
         }
     }
