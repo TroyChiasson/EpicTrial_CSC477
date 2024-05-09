@@ -56,7 +56,7 @@ public class Boss : MonoBehaviour
             //Phase 2
             if (bossHealth < 6)
             {
-                transform.Rotate(Vector3.up * 200 * Time.deltaTime);
+                transform.Rotate(Vector3.left * 200 * Time.deltaTime);
                 maxFireDelay = .5f;
                 minFireDelay = .1f;
             }
