@@ -38,15 +38,28 @@ public class Boss : MonoBehaviour
     {
         Fire();
 
+       
         float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
         if (distanceToPlayer <= attackRange)
         {
+            //Phase 1
+            if (bossHealth >= 6)
+            {
+                // Look at the player on the Y-axis only
+                Vector3 lookDir = new Vector3(target.position.x - transform.position.x, target.position.y - transform.position.y, 0f);
+                lookDir.Normalize();
+                transform.rotation = Quaternion.LookRotation(lookDir);
+            }
 
-            // Look at the player on the Y-axis only
-            Vector3 lookDir = new Vector3(target.position.x - transform.position.x, target.position.y - transform.position.y, 0f);
-            lookDir.Normalize();
-            transform.rotation = Quaternion.LookRotation(lookDir);
+            //Phase 2
+            if (bossHealth < 6)
+            {
+                transform.Rotate(Vector3.up * 200 * Time.deltaTime);
+                maxFireDelay = .5f;
+                minFireDelay = .1f;
+            }
+           
         }
 
     }
@@ -74,7 +87,7 @@ public class Boss : MonoBehaviour
     {
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
-        Vector3 direction = player.position - firingPoint.position; // Shoot towards player
+        Vector3 direction = firingPoint.position - transform.localPosition; // Shoot towards player
         firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
     }
 
@@ -83,7 +96,7 @@ public class Boss : MonoBehaviour
         // Check for collision with ShieldBullet tag
         if (collision.gameObject.CompareTag("ShieldBullet"))
         {
-            TakeDamage(10); // Take damage from ShieldBullet
+            TakeDamage(1); // Take damage from ShieldBullet
         }
     }
 

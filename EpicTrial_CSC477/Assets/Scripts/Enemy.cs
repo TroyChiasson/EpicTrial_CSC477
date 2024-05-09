@@ -55,7 +55,7 @@ public class EnemyTest1 : MonoBehaviour
     {
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
-        Vector3 direction = player.position - firingPoint.position; // Shoot towards player
+        Vector3 direction = firingPoint.position - transform.localPosition; // Shoot towards player
         firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
     }
 

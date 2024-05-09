@@ -635,7 +635,7 @@ MonoBehaviour:
   attackRange: 25
   firingPoint: {fileID: 75538948024769972}
   player: {fileID: 729771789}
-  bossHealth: 100
+  bossHealth: 5
 --- !u!1001 &340840397
 PrefabInstance:
   m_ObjectHideFlags: 0
