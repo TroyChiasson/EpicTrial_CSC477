@@ -9,7 +9,7 @@ public class ButtonTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (activated) { return; }
-        if (other.gameObject.tag == "Bullet") {
+        if (other.gameObject.tag == "ShieldBullet") {
             button.TurnOn();
             activated = true;
         }
