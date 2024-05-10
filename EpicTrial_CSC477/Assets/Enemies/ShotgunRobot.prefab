@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}
+  Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
   maxFireDelay: 5
   minFireDelay: 1
   fireRateCurve:

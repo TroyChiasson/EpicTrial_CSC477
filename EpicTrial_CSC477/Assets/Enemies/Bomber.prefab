@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbf49d05343b234c9a21ee5b446a0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
   fuseTime: 5
   explosionRadius: 2
   explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
