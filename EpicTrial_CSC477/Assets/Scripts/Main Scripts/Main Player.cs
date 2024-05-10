@@ -37,6 +37,7 @@ public class MainPlayer : MonoBehaviour {
     private float dashCounter;
     private float dashCoolCounter;
     private bool isDashing = false;
+    private bool isDead = false;
 
     //player health 
     public static int playerHealth;
@@ -44,6 +45,7 @@ public class MainPlayer : MonoBehaviour {
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
+
 
     //start is called before the first frame update
     void Start() {
@@ -73,6 +75,7 @@ public class MainPlayer : MonoBehaviour {
     public void playerDeath()
     {
         Destroy(GameObject.FindGameObjectWithTag("Shield"));
+        isDead = true;
         rb.isKinematic = true;
         //Play death sound here
     }
@@ -86,98 +89,101 @@ public class MainPlayer : MonoBehaviour {
     void Update()
     {
         UpdateHealthUI();
-        //movement keys being pressed
-        if (Game.Instance.input.Default.Up.WasPressedThisFrame()) { up = true; }
-        if (Game.Instance.input.Default.Down.WasPressedThisFrame()) { down = true; }
-        if (Game.Instance.input.Default.Left.WasPressedThisFrame()) { left = true; }
-        if (Game.Instance.input.Default.Right.WasPressedThisFrame()) { right = true; }
+        
+        if (!isDead) {
+            //movement keys being pressed
+            if (Game.Instance.input.Default.Up.WasPressedThisFrame()) { up = true; }
+            if (Game.Instance.input.Default.Down.WasPressedThisFrame()) { down = true; }
+            if (Game.Instance.input.Default.Left.WasPressedThisFrame()) { left = true; }
+            if (Game.Instance.input.Default.Right.WasPressedThisFrame()) { right = true; }
 
-        //movement keys being released
-        if (Game.Instance.input.Default.Up.WasReleasedThisFrame()) { up = false; }
-        if (Game.Instance.input.Default.Down.WasReleasedThisFrame()) { down = false; }
-        if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
-        if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
+            //movement keys being released
+            if (Game.Instance.input.Default.Up.WasReleasedThisFrame()) { up = false; }
+            if (Game.Instance.input.Default.Down.WasReleasedThisFrame()) { down = false; }
+            if (Game.Instance.input.Default.Left.WasReleasedThisFrame()) { left = false; }
+            if (Game.Instance.input.Default.Right.WasReleasedThisFrame()) { right = false; }
 
-        //direction the player will move this frame
-        bool nowUp; bool nowDown; bool nowLeft; bool nowRight;
+            //direction the player will move this frame
+            bool nowUp; bool nowDown; bool nowLeft; bool nowRight;
 
-        //if dash counter is active, we move according to old movement values
-        if (dashCounter > 0) {
-            nowUp = oldUp;
-            nowDown = oldDown;
-            nowLeft = oldLeft;
-            nowRight = oldRight;
-        }
-
-        //if dash counter is not active, move according to current movement values
-        else {
-            nowUp = up;
-            nowDown = down;
-            nowLeft = left;
-            nowRight = right;
-        }
-
-        //cannot move in opposite directions at once
-        if (nowUp && nowDown) { nowUp = nowDown = false; }
-        if (nowLeft && nowRight) { nowLeft = nowRight = false; }
-
-        //diagonal movement
-        if (nowUp && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (nowUp && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
-        else if (nowDown && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-        else if (nowDown && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
-
-        //straight x or y movement
-        else {
-
-            //y
-            if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
-            else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
-            else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
-
-            //x
-            if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
-            else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
-            else rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
-
-        //if spacebar was pressed, begin dash
-        if (Game.Instance.input.Default.Space.WasPressedThisFrame()) {
-
-            //ensure we arent already currently dashing or waiting for dash cool down
-            if (dashCoolCounter <= 0 && dashCounter <= 0) {
-
-                //begin dash
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLength;
-
-                //remember directions before dash
-                oldUp = up;
-                oldDown = down;
-                oldLeft = left;
-                oldRight = right;
+            //if dash counter is active, we move according to old movement values
+            if (dashCounter > 0) {
+                nowUp = oldUp;
+                nowDown = oldDown;
+                nowLeft = oldLeft;
+                nowRight = oldRight;
             }
-        }
 
-        //mid-dash
-        if(dashCounter > 0) {
-            isDashing = true;
-            //decrement dash counter as time goes by
-            dashCounter -= Time.deltaTime;
-
-            //stop dash if dash counter is finished
-            if (dashCounter <= 0) {
-                activeMoveSpeed = playerSpeed;
-                dashCoolCounter = dashCooldown;
+            //if dash counter is not active, move according to current movement values
+            else {
+                nowUp = up;
+                nowDown = down;
+                nowLeft = left;
+                nowRight = right;
             }
-        }
-        else
-        {
-            isDashing = false;
-        }
 
-        //decrement dash cool down counter
-        if(dashCoolCounter > 0) { dashCoolCounter -= Time.deltaTime; }
+            //cannot move in opposite directions at once
+            if (nowUp && nowDown) { nowUp = nowDown = false; }
+            if (nowLeft && nowRight) { nowLeft = nowRight = false; }
+
+            //diagonal movement
+            if (nowUp && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+            else if (nowUp && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, activeMoveSpeed * DIAGMULT, 0);
+            else if (nowDown && nowLeft) rb.velocity = new Vector3(activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+            else if (nowDown && nowRight) rb.velocity = new Vector3(-activeMoveSpeed * DIAGMULT, -activeMoveSpeed * DIAGMULT, 0);
+
+            //straight x or y movement
+            else {
+
+                //y
+                if (nowUp) rb.velocity = new Vector3(rb.velocity.x, activeMoveSpeed, 0);
+                else if (nowDown) rb.velocity = new Vector3(rb.velocity.x, -activeMoveSpeed, 0);
+                else rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+
+                //x
+                if (nowLeft) rb.velocity = new Vector3(activeMoveSpeed, rb.velocity.y, 0);
+                else if (nowRight) rb.velocity = new Vector3(-activeMoveSpeed, -rb.velocity.y, 0);
+                else rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            }
+
+            //if spacebar was pressed, begin dash
+            if (Game.Instance.input.Default.Space.WasPressedThisFrame()) {
+
+                //ensure we arent already currently dashing or waiting for dash cool down
+                if (dashCoolCounter <= 0 && dashCounter <= 0) {
+
+                    //begin dash
+                    activeMoveSpeed = dashSpeed;
+                    dashCounter = dashLength;
+
+                    //remember directions before dash
+                    oldUp = up;
+                    oldDown = down;
+                    oldLeft = left;
+                    oldRight = right;
+                }
+            }
+
+            //mid-dash
+            if(dashCounter > 0) {
+                isDashing = true;
+                //decrement dash counter as time goes by
+                dashCounter -= Time.deltaTime;
+
+                //stop dash if dash counter is finished
+                if (dashCounter <= 0) {
+                    activeMoveSpeed = playerSpeed;
+                    dashCoolCounter = dashCooldown;
+                }
+            }
+            else
+            {
+                isDashing = false;
+            }
+
+            //decrement dash cool down counter
+            if(dashCoolCounter > 0) { dashCoolCounter -= Time.deltaTime; }
+        }
     }
 
     /**player collided with another object**/
