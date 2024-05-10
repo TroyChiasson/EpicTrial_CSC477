@@ -43,6 +43,7 @@ public class MainPlayer : MonoBehaviour {
     //player health 
     public static int playerHealth;
     private int startHealth = 3;
+    public static bool invulnerable;
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
@@ -52,6 +53,7 @@ public class MainPlayer : MonoBehaviour {
     void Start() {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        invulnerable = false;
         activeMoveSpeed = playerSpeed;
         playerHealth = startHealth;
         UpdateHealthUI();
@@ -59,20 +61,24 @@ public class MainPlayer : MonoBehaviour {
 
     /**reduce player health by dmg**/
     public void Damage(int dmg) {
+        if (invulnerable == false) {
+            //reduce health and update UI
+            playerHealth -= dmg;
+            UpdateHealthUI();
 
-        //reduce health and update UI
-        playerHealth -= dmg;
-        UpdateHealthUI();
-
-        // Check if player health has reached zero
-        if (playerHealth <= 0) 
-        {
-            playerDeath();
-            StartCoroutine(LoadSceneAfterDelay("MainDeath"));
+            // Check if player health has reached zero
+            if (playerHealth <= 0) 
+            {
+                playerDeath();
+                StartCoroutine(LoadSceneAfterDelay("MainDeath"));
            
+            }
         }
-
+        else {
+            UpdateHealthUI();
+        }
     }
+
     public void playerDeath()
     {
         Destroy(GameObject.FindGameObjectWithTag("Shield"));
@@ -90,6 +96,7 @@ public class MainPlayer : MonoBehaviour {
     //update is called once per frame
     void Update()
     {
+        print(invulnerable);
         UpdateHealthUI();
         
         if (!isDead) {

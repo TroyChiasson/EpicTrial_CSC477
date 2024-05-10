@@ -19,8 +19,13 @@ public class Drops : MainPlayer
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "MainPlayer") {
             float dropChoice = Random.value;
-            if (dropChoice <= 1) {
+            if (dropChoice > .05f && dropChoice < 1f) {
                 HealthUp();
+            }
+            if (dropChoice <= .05f) {
+                this.gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
+                StartCoroutine(Invulnerability());
+
             }
         }
     }
@@ -28,5 +33,12 @@ public class Drops : MainPlayer
     void HealthUp() {
         playerHealth++;
         Destroy(this.gameObject);
+    }
+
+    IEnumerator Invulnerability() {
+        invulnerable = true;
+        yield return new WaitForSeconds(5f);
+        Destroy(this.gameObject);
+        invulnerable = false;
     }
 }
