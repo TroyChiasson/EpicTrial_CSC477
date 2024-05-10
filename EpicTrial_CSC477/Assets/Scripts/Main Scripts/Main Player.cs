@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -77,6 +78,7 @@ public class MainPlayer : MonoBehaviour {
         Destroy(GameObject.FindGameObjectWithTag("Shield"));
         isDead = true;
         rb.isKinematic = true;
+        isDead = true;
         //Play death sound here
     }
     IEnumerator LoadSceneAfterDelay(string sceneName)
