@@ -7,12 +7,12 @@ using UnityEngine;
 // https://www.protohacks.net/LATech/499/scores/
 public class HighScoreTest : MonoBehaviour
 {
-    private float delay;
+    // private float delay;
     // Start is called before the first frame update
     void Start()
     {
         HS.Init(this, "Troy's Game");
-        delay = 1.0f;
+        // delay = 1.0f;
     }
 
     // Update is called once per frame
