@@ -39,6 +39,8 @@ public class MainPlayer : MonoBehaviour {
     private float dashCoolCounter;
     private bool isDashing = false;
     private bool isDead = false;
+    private TrailRenderer trailRenderer;
+
 
     //player health 
     public static int playerHealth;
@@ -53,6 +55,8 @@ public class MainPlayer : MonoBehaviour {
     void Start() {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.enabled = false;
         invulnerable = false;
         activeMoveSpeed = playerSpeed;
         playerHealth = startHealth;
@@ -170,6 +174,9 @@ public class MainPlayer : MonoBehaviour {
                     oldDown = down;
                     oldLeft = left;
                     oldRight = right;
+
+                    //enable trailrenderer when dashing
+                    trailRenderer.enabled = true;
                 }
             }
 
@@ -183,6 +190,7 @@ public class MainPlayer : MonoBehaviour {
                 if (dashCounter <= 0) {
                     activeMoveSpeed = playerSpeed;
                     dashCoolCounter = dashCooldown;
+                    trailRenderer.enabled = false;
                 }
             }
             else
