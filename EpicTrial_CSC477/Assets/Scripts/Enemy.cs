@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyTest1 : MonoBehaviour
 {
+    public AudioManager am;
     public GameObject BulletTest;
     public GameObject Drop;
     public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
@@ -53,6 +54,7 @@ public class EnemyTest1 : MonoBehaviour
 
     void fireBullet()
     {
+        am.Play(0);
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
         Vector3 direction = firingPoint.position - transform.localPosition; // Shoot towards player
