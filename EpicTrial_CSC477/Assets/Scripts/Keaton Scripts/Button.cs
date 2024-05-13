@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour {
 
+    public AudioManager am;
     public Material onLight;
     public GameObject buttonLight;
     private MeshRenderer renderer;
@@ -18,6 +19,7 @@ public class Button : MonoBehaviour {
     }
 
     public void TurnOn() {
+        am.Play(3);
         for (int i = 0; i < bulletTurrets.Length; i++) { bulletTurrets[i].Deactivate(); }
         for (int i = 0; i < laserTurrets.Length; i++) { laserTurrets[i].Deactivate(); }
         for (int i = 0; i < doors.Length; i++) { doors[i].Open(); }
