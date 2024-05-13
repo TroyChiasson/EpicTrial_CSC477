@@ -8,6 +8,8 @@ public class LaserTurret : MonoBehaviour {
     public Transform playerTrans;
     public MainPlayer player;
 
+    public AudioManager am;
+
     private bool activated = true;
 
     private List<GameObject> destroyList = new List<GameObject>();
@@ -55,18 +57,14 @@ public class LaserTurret : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (!activated) { return; }
-        Turn(DetermineAngle());
+        if (!shoot && !flickerEnabled) { Turn(DetermineAngle()); }
         CycleFiring();
 
+        //if the laser is active, destory everything inside of it (player, enemies, bullets)
         if (shoot) {
-            if (inLaser) {
-                player.Damage(3);
-            }
-
+            if (inLaser) { player.Damage(3); }
             if (destroyList.Count > 0) {
-                foreach (var obj in destroyList) {
-                    Destroy(obj);
-                }
+                foreach (var obj in destroyList) { Destroy(obj); }
                 destroyList = new List<GameObject>();
             }
         }
@@ -143,6 +141,7 @@ public class LaserTurret : MonoBehaviour {
                 flickerIsWhite = true;
                 flickers = 0;
                 laser.transform.SetLocalScale(y: laserMaxWidth);
+                am.Play(1);
             }
 
             else {
@@ -163,6 +162,7 @@ public class LaserTurret : MonoBehaviour {
         if (fireTime >= fireSpeed) {
             fireTime = 0;
             fireCharge = true;
+            am.Play(2);
             laserRenderer.material.color = Color.cyan;
             laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
         }

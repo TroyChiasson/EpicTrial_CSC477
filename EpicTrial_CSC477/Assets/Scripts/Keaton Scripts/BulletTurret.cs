@@ -7,6 +7,8 @@ public class BulletTurret : MonoBehaviour {
 
     public Transform player;
 
+    public AudioManager am;
+
     private bool activated = true;
 
     private float turnSpeed = 1f;
@@ -59,6 +61,7 @@ public class BulletTurret : MonoBehaviour {
     }
 
     private void Fire() {
+        am.Play(0);
         Vector3 cannonEnd = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, cannonEnd, Quaternion.identity);
         Vector3 direction = player.position - firingPoint.position; // Shoot towards player
