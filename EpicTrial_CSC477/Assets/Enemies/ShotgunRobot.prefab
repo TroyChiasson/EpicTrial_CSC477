@@ -83,7 +83,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166182090724578674}
-  m_Text: HI
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -180,7 +180,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389889767230850542}
-  m_Text: HI
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunBase
       objectReference: {fileID: 0}
+    - target: {fileID: 9000571147661390177, guid: d6d3a9ee799cecb4cbb108657bdfe508,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 951b0df43cb81c84faa084b7b9b86953, type: 2}
     m_RemovedComponents:
     - {fileID: 4803401430850540595, guid: d6d3a9ee799cecb4cbb108657bdfe508, type: 3}
     m_RemovedGameObjects: []

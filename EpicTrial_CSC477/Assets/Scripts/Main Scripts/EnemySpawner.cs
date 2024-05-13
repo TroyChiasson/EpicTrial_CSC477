@@ -9,10 +9,14 @@ public class EnemySpawner : MonoBehaviour
     public float spawnCooldown = 20.0f; // Time between enemy spawns
     public int maxEnemies = 10; // Maximum number of enemies allowed on the level
 
+    public int maxSpawned = 10; // Maximum number of enemies that can be spawned from the spawner
+    private int spawned;
+
     private float timer = 0.0f; // Cooldown timer
 
     void Start()
     {
+        spawned = 0;
     }
 
     void Update()
@@ -20,10 +24,11 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
 
         // Check if enemy count is below the limit before spawning
-        if (timer >= spawnCooldown && CountEnemies() < maxEnemies)
+        if (timer >= spawnCooldown && CountEnemies() < maxEnemies && spawned < maxSpawned)
         {
             SpawnEnemy();
             timer = 0.0f; // Reset cooldown timer
+            spawned++;
         }
     }
 
