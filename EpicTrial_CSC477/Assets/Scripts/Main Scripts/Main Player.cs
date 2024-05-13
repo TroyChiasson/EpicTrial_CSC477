@@ -19,7 +19,7 @@ public class MainPlayer : MonoBehaviour {
     private bool oldRight = false;
 
     //how fast the player is currently moving
-    private float activeMoveSpeed;
+    public static float activeMoveSpeed;
 
     //how fast the player moves in x or y direction normally
     public static float playerSpeed = 15.0f;
@@ -100,7 +100,6 @@ public class MainPlayer : MonoBehaviour {
     //update is called once per frame
     void Update()
     {
-        print(invulnerable);
         UpdateHealthUI();
         
         if (!isDead) {

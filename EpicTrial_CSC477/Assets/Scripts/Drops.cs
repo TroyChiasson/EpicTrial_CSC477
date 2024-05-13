@@ -19,13 +19,12 @@ public class Drops : MainPlayer
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "MainPlayer") {
             float dropChoice = Random.value;
-            if (dropChoice > .05f && dropChoice < 1f) {
+            if (dropChoice > .05f && dropChoice <= 1f) {
                 HealthUp();
             }
             if (dropChoice <= .05f) {
                 this.gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
                 StartCoroutine(Invulnerability());
-
             }
         }
     }
