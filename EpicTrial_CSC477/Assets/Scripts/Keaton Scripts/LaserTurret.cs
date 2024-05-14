@@ -58,6 +58,8 @@ public class LaserTurret : MonoBehaviour {
         laserMaxWidth = laser.transform.localScale.y;
     }
 
+    public bool GetActive() { return activated; }
+
     // Update is called once per frame
     void Update() {
         if (!activated) { return; }

@@ -32,6 +32,8 @@ public class BulletTurret : MonoBehaviour {
         renderer = turretHead.GetComponent<MeshRenderer>();
     }
 
+    public bool GetActive() { return activated; }
+
     // Update is called once per frame
     void Update() {
         if (!activated) { return; }
