@@ -5,9 +5,9 @@ using System;
 
 public class BossLaser : MonoBehaviour
 {
-
-    public Transform playerTrans;
-    public MainPlayer player;
+    private AudioManager am;
+    private Transform playerTrans;
+    private MainPlayer player;
 
     private bool activated = true;
 
@@ -46,8 +46,10 @@ public class BossLaser : MonoBehaviour
     private bool inLaser = false;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        player = GameObject.Find("Player").GetComponent<MainPlayer>();
+        playerTrans = player.transform;
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = turretHead.GetComponent<MeshRenderer>();
         laserRenderer = laser.GetComponent<MeshRenderer>();
         laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
@@ -164,6 +166,7 @@ public class BossLaser : MonoBehaviour
                 flickerIsWhite = true;
                 flickers = 0;
                 laser.transform.SetLocalScale(y: laserMaxWidth);
+                am.Play(1);
             }
 
             else
@@ -186,6 +189,7 @@ public class BossLaser : MonoBehaviour
         {
             fireTime = 0;
             fireCharge = true;
+            am.Play(2);
             laserRenderer.material.color = Color.cyan;
             laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);
         }

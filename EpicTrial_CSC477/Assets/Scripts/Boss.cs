@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
-
+    private AudioManager am;
     public Transform target; // Reference to the player's transform
     public GameObject BulletTest;
     public GameObject Drop;
@@ -24,7 +24,9 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
-       
+
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
+
         if (target == null)
         {
             // If the target is not set, try to find the player
@@ -79,6 +81,8 @@ public class Boss : MonoBehaviour
 
     void Fire()
     {
+        am.Play(0);
+
         // Check if player is in range
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -128,6 +132,7 @@ public class Boss : MonoBehaviour
 
     void OnDestroy()
     {
+        am.Play(6);
         Vector3 enemyPosDrop = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         float dropChance = Random.value;
         if (dropChance < 1f)
