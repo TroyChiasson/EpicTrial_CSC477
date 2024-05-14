@@ -1,3 +1,4 @@
+using HighScore;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,7 @@ public class scoreManager : MonoBehaviour
     public static scoreManager instance;
     public TextMeshProUGUI scoreText;
 
-    public static int score = 0;
+    public static int score = 1903;
 
     private void Awake()
     {
