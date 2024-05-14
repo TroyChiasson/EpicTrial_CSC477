@@ -8,11 +8,11 @@ public class DeathScreen : MonoBehaviour
 {
     private void Start()
     {
-        HS.Init(this, "Troy's Game");
+        HS.Init(this, "Momento Mori");
     }
     public void ReturnMainMenu()
     {
-        HS.SubmitHighScore(this, "Troy Himself", scoreManager.score);
+        HS.SubmitHighScore(this, "Beta Tester", scoreManager.score);
         SceneManager.LoadScene("MainMenu");
     }
 
