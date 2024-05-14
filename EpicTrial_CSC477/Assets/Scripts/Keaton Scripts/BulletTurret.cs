@@ -5,9 +5,9 @@ using System;
 
 public class BulletTurret : MonoBehaviour {
 
-    public Transform player;
+    private Transform player;
 
-    public AudioManager am;
+    private AudioManager am;
 
     private bool activated = true;
 
@@ -27,6 +27,7 @@ public class BulletTurret : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player").transform;
         am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = turretHead.GetComponent<MeshRenderer>();
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachineGunnerAi : MonoBehaviour
 {
-    public AudioManager am;
+    private AudioManager am;
     public GameObject BulletTest;
     public GameObject Drop;
     public float maxFireDelay = 5.0f; // Maximum time between shots (at range)
