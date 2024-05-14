@@ -8,16 +8,22 @@ public class Game : MonoBehaviour {
     public static Game Instance { get; private set; }
     public Input input;
 
+    private WaveManager waveManager;
+
     // Start is called before the first frame update
     void Start() {
         input = new Input();
         input.Enable();
         Instance = this;
+
+        waveManager = FindObjectOfType<WaveManager>(); 
+        waveManager.OnAllWavesCompleted.AddListener(ProgressToNextScene); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
 
@@ -25,6 +31,7 @@ public class Game : MonoBehaviour {
         {
             ProgressToNextScene();
         }
+        */
     }
 
     void ProgressToNextScene()
