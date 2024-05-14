@@ -93,6 +93,7 @@ public class MachineGunnerAi : MonoBehaviour
 
     void OnDestroy()
     {
+        am.Play(6);
         Vector3 enemyPosDrop = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         float dropChance = Random.value;
         if (dropChance < .5f)

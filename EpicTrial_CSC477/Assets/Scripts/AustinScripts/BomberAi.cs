@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class BomberAi : MonoBehaviour
 {
+    private AudioManager am;
     public GameObject Drop;
     public float fuseTime = 5.0f; // Time until explosion (seconds)
     public float explosionRadius = 5.0f; // Radius of the explosion
@@ -12,8 +13,8 @@ public class BomberAi : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Transform player;
 
-    void Start()
-    {
+    void Start() {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("MainPlayer").transform;
     }
@@ -44,6 +45,8 @@ public class BomberAi : MonoBehaviour
     {
         if (!exploded)
         {
+            am.Play(6);
+
             // Prevent multiple explosions
             exploded = true;
 
