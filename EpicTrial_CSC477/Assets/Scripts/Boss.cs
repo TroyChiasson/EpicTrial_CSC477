@@ -115,7 +115,7 @@ public class Boss : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        bossHealth -= damage*10;
+        bossHealth -= damage;
 
         // Check if boss is dead (optional)
         if (bossHealth <= 0)
