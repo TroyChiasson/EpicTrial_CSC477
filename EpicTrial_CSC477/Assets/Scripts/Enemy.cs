@@ -18,6 +18,7 @@ public class EnemyTest1 : MonoBehaviour
 
     void Start()
     {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         player = GameObject.FindGameObjectWithTag("MainPlayer").transform;
         // Ensure fireRateCurve exists (optional)
         if (fireRateCurve == null)

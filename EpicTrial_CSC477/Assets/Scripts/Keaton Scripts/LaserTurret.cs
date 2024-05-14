@@ -48,6 +48,7 @@ public class LaserTurret : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = turretHead.GetComponent<MeshRenderer>();
         laserRenderer = laser.GetComponent<MeshRenderer>();
         laserRenderer.material.color = SetAlpha(laserRenderer.material.color, 0);

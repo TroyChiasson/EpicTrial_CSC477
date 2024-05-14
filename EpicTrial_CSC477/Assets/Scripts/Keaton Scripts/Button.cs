@@ -14,6 +14,7 @@ public class Button : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = buttonLight.GetComponent<MeshRenderer>();
         Debug.Log(laserTurrets.Length);
     }

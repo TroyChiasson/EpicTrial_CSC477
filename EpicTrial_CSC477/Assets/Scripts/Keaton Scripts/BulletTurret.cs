@@ -27,6 +27,7 @@ public class BulletTurret : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = turretHead.GetComponent<MeshRenderer>();
     }
 
