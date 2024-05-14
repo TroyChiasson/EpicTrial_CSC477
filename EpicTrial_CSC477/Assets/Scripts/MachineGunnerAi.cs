@@ -21,6 +21,7 @@ public class MachineGunnerAi : MonoBehaviour
 
     void Start()
     {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         player = GameObject.FindGameObjectWithTag("MainPlayer").transform;
 
         // Ensure fireRateCurve exists (optional)
