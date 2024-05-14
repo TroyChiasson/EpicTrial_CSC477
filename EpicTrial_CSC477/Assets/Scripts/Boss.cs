@@ -81,7 +81,6 @@ public class Boss : MonoBehaviour
 
     void Fire()
     {
-        am.Play(0);
 
         // Check if player is in range
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -100,8 +99,8 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void fireBullet()
-    {
+    void fireBullet() {
+        am.Play(0);
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
         Vector3 direction = firingPoint.position - transform.localPosition; // Shoot towards player
