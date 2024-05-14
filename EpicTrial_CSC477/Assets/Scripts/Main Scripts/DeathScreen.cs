@@ -15,6 +15,9 @@ public class DeathScreen : MonoBehaviour
 
     public void SubmitScore()
     {
+        // CHECK HIGHSCORE HERE
+        // https://www.protohacks.net/LATech/499/scores/
+
         HS.SubmitHighScore(this, playerNameText.text, scoreManager.score);
     }
     
