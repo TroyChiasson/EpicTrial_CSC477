@@ -63,6 +63,6 @@ public class WaveManager : MonoBehaviour
 
     private bool CheckForEnemies()
     {
-        return GameObject.FindGameObjectWithTag("Enemy") != null;
+        return GameObject.FindGameObjectWithTag("Enemy") != null || GameObject.FindGameObjectWithTag("Boss") != null;
     }
 }

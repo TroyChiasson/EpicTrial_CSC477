@@ -2395,6 +2395,11 @@ PrefabInstance:
       propertyPath: m_text
       value: 000
       objectReference: {fileID: 0}
+    - target: {fileID: 7193515040657352208, guid: 31fe6e130137746e8820e182f005259f,
+        type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7247750770554114780, guid: 31fe6e130137746e8820e182f005259f,
         type: 3}
       propertyPath: m_Camera
