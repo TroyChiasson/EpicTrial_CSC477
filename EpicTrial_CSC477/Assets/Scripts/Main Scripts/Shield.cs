@@ -9,6 +9,8 @@ public class Shield : MonoBehaviour
     [SerializeField] private float orbitDistance = 1f; // Set the desired distance from the player
     [SerializeField] private float rotationSpeed = 100f; // Adjust the rotation speed
 
+    private AudioManager am;
+
     public GameObject Bullettest;
     public Transform firingPoint;
     public static bool bulletFired;
@@ -24,6 +26,7 @@ public class Shield : MonoBehaviour
 
     void Start()
     {
+        am = GameObject.Find("AM").GetComponent<AudioManager>();
         shieldHealth = 6;
     }
 
@@ -71,6 +74,7 @@ public class Shield : MonoBehaviour
 
     void Reflect()
     {
+        am.Play(4);
         print("howdy");
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(Bullettest, enemyPos, Quaternion.identity);
@@ -113,6 +117,7 @@ public class Shield : MonoBehaviour
     // Function to toggle sprite renderer and collider
     void SetShieldActive(bool active)
     {
+        if (!active) { am.Play(5); }
         playerShield.GetComponent<SpriteRenderer>().enabled = active;
         playerShield.GetComponent<Collider>().enabled = active;
     }

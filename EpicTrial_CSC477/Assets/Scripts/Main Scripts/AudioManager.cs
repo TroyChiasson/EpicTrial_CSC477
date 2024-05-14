@@ -8,7 +8,9 @@ public enum SoundType {
     LASER = 1,
     CHARGE = 2,
     BUTTON = 3,
-
+    BOUNCE = 4,
+    SHATTER = 5,
+    BOOM = 6,
 }
 
 public class SoundCollection {
@@ -74,6 +76,9 @@ public class AudioManager : MonoBehaviour {
             {SoundType.LASER, new SoundCollection("laser") },
             {SoundType.CHARGE, new SoundCollection("charge") },
             {SoundType.BUTTON, new SoundCollection("button") },
+            {SoundType.BOUNCE, new SoundCollection("bounce") },
+            {SoundType.SHATTER, new SoundCollection("shatter") },
+            {SoundType.BOOM, new SoundCollection("boom") },
         };
     }
 

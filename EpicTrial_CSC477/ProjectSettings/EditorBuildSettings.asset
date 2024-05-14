@@ -12,14 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Round1.unity
     guid: ac8aded98b0646c42b2d127e3db2100c
   - enabled: 1
-    path: Assets/Scenes/Main/Round2.unity
-    guid: d1ba465ee29b05d4881858615eb9a24b
+    path: Assets/Scenes/Main/Round2_Puz.unity
+    guid: e8942c123d1945d458eecc39549df8b3
   - enabled: 1
-    path: Assets/Scenes/Main/Round3_Puz.unity
-    guid: d52b2aa78a49e2a4dac57219e9dc1892
+    path: Assets/Scenes/Main/Round3.unity
+    guid: 6d57d367558716d44bf0afc102b8df0b
   - enabled: 1
-    path: Assets/Scenes/Main/Round4_Out.unity
-    guid: 477906504dab1104197f996505a7950d
+    path: Assets/Scenes/Main/Round4_Outlast.unity
+    guid: 46d62aed47554964c93a66917844f546
   - enabled: 1
     path: Assets/Scenes/Main/Round5_Boss.unity
     guid: c1153296ac01efe48b14447ef1d07aa9

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Boss : MonoBehaviour
 
     private float fireTime = 0f;
     public int bossHealth = 100; // Added boss health
+    public GameObject Waves; 
 
     void Start()
     {
@@ -113,11 +115,12 @@ public class Boss : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        bossHealth -= damage;
+        bossHealth -= damage*10;
 
         // Check if boss is dead (optional)
         if (bossHealth <= 0)
         {
+            Waves.SetActive(false);
             Destroy(this.gameObject);
             // Add additional logic for boss death here
         }
