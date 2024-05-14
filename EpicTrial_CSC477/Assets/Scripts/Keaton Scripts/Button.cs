@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour {
 
-    public AudioManager am;
+    private AudioManager am;
     public Material onLight;
     public GameObject buttonLight;
     private MeshRenderer renderer;

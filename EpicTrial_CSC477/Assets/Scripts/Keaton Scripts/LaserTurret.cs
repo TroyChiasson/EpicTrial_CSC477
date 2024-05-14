@@ -5,10 +5,10 @@ using System;
 
 public class LaserTurret : MonoBehaviour {
 
-    public Transform playerTrans;
-    public MainPlayer player;
+    private Transform playerTrans;
+    private MainPlayer player;
 
-    public AudioManager am;
+    private AudioManager am;
 
     private bool activated = true;
 
@@ -48,6 +48,9 @@ public class LaserTurret : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        player = GameObject.Find("Player").GetComponent<MainPlayer>();
+        playerTrans = player.transform;
+
         am = GameObject.Find("AM").GetComponent<AudioManager>();
         renderer = turretHead.GetComponent<MeshRenderer>();
         laserRenderer = laser.GetComponent<MeshRenderer>();
