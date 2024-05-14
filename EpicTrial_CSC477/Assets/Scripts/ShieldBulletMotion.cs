@@ -23,6 +23,7 @@ public class ShieldBulletMotion : MonoBehaviour
         Destroy(this.gameObject);
         if (other.gameObject.tag == "Enemy") 
         {
+            scoreManager.instance.AddPoints(200);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(other.gameObject);
         }
