@@ -24,8 +24,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Round5_Boss.unity
     guid: c1153296ac01efe48b14447ef1d07aa9
   - enabled: 1
-    path: Assets/Scenes/Main/R6.unity
-    guid: 6a6c58cb7aa2a2948ba1db953f53036e
+    path: Assets/Scenes/Main/Round6_Endless.unity
+    guid: c7c75e6b6bbcb514e988d0b25e807aa1
   - enabled: 1
     path: Assets/Scenes/Main/MainDeath.unity
     guid: 2cf2676bcf369924ab03c79fe5198058
