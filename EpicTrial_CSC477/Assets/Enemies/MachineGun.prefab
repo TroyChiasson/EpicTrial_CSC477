@@ -182,9 +182,9 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 1
   m_Height: 2
-  m_Direction: 1
+  m_Direction: 0
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &8007482965996963945
 MonoBehaviour:
@@ -261,7 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729c9bc8e8d1f024ab82590c98b35c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  am: {fileID: 0}
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}
   Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
