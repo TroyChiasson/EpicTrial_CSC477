@@ -275,7 +275,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5185677155062610066}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -325,6 +325,7 @@ MonoBehaviour:
   dashSpeed: 25
   dashLength: 0.5
   dashCooldown: 1
+  renderer: {fileID: 8692124267914616700}
   heart1: {fileID: 0}
   heart2: {fileID: 0}
   heart3: {fileID: 0}
