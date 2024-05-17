@@ -25,8 +25,6 @@ public class DialogIntro : MonoBehaviour
     private int currentCharIndex = 0;
     private bool isDialogComplete = false;
 
-    // Time to wait after dialog completion before advancing
-    public float delayAfterDialogComplete = 2f; // Adjust as needed
 
     void Start()
     {
@@ -48,21 +46,35 @@ public class DialogIntro : MonoBehaviour
     {
         float characterDelay = 0.05f; // Adjust the delay between characters
 
-        while (!isDialogComplete)
+        while (currentDialogIndex < dialogWords.Length)
         {
-            if (currentCharIndex < dialogWords[currentDialogIndex].Length)
+            if (!isDialogComplete)
             {
-                // Display text character by character with delay
-                dialogText.text = dialogWords[currentDialogIndex].Substring(0, currentCharIndex + 1);
-                currentCharIndex++;
-                yield return new WaitForSeconds(characterDelay); // Introduce delay between characters
+                if (currentCharIndex < dialogWords[currentDialogIndex].Length)
+                {
+                    // Display text character by character with delay
+                    dialogText.text = dialogWords[currentDialogIndex].Substring(0, currentCharIndex + 1);
+                    currentCharIndex++;
+                    Debug.Log("Displaying character: " + currentCharIndex);
+                    yield return new WaitForSeconds(characterDelay); // Introduce delay between characters
+                }
+                else
+                {
+                    // Text display is complete for current dialog
+                    isDialogComplete = true;
+                    Debug.Log("Dialog complete");
+                }
             }
             else
             {
-                // Text display is complete
-                isDialogComplete = true;
-                yield return new WaitForSeconds(delayAfterDialogComplete);
+                // Wait for "Q" input to proceed to the next dialog
+                if (input.Default.Q.WasPressedThisFrame())
+                {
+                    NextDialog();
+                }
             }
+
+            yield return null;
         }
     }
 
@@ -72,6 +84,8 @@ public class DialogIntro : MonoBehaviour
     {
         currentDialogIndex++;
         currentCharIndex = 0;
+
+        Debug.Log(currentDialogIndex);
 
         if (currentDialogIndex < dialogWords.Length)
         {
