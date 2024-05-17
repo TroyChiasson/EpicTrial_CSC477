@@ -276,10 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1409976792}
   OnAllWavesCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -2054,7 +2051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409976793}
   m_Layer: 0
-  m_Name: Spawners
+  m_Name: Wave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

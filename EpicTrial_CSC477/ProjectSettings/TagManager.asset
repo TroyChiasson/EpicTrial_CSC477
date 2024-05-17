@@ -16,6 +16,7 @@ TagManager:
   - EnemyBullet
   - Boss
   - Phase3
+  - Bomber
   layers:
   - Default
   - TransparentFX
