@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         SettingsMenu.SetActive(false);
         ControlsMenu.SetActive(false);
+        
     }
 
     public void StartGame()
