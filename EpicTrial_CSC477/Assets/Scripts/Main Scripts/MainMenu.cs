@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         scoreManager.score = 0;
-        SceneManager.LoadScene("Cutscene");
+        SceneManager.LoadScene("Cutscene 1");
     }   
 
     public void Quit()
