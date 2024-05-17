@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 277823685098699757}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.65, y: 0.00000071526, z: -1.8}
+  m_LocalPosition: {x: 29.65, y: 0.00000071526, z: -1.3}
   m_LocalScale: {x: 60, y: 2.23, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -572,8 +572,8 @@ Transform:
   m_GameObject: {fileID: 3790977242556878107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.4, y: -12.3, z: 14.948907}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 28.4, y: -12.3, z: -11.40495}
+  m_LocalScale: {x: 1, y: 1, z: 1.2898}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6980716790227045713}
@@ -592,8 +592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96360647b125734429cf0836217b5504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTrans: {fileID: 0}
-  player: {fileID: 0}
+  turnSpeed: 1
+  chargeSpeed: 3
+  chargeTime: 0
+  laserMaxWidth: 0
   firingPoint: {fileID: 6201298976041561558}
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}

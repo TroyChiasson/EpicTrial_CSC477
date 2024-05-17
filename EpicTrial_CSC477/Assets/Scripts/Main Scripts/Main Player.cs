@@ -37,10 +37,19 @@ public class MainPlayer : MonoBehaviour {
     public float dashLength = .5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool isDead = false;
     private TrailRenderer trailRenderer;
 
+    private bool iframes = false;
+    private bool visible = true;
+    private int total_flickers = 40;
+    private int flickers = 0;
+    private float flicker_total_time = 0.05f;
+    private float flicker_cur_time = 0f;
+
+    //player image
+    public SpriteRenderer renderer;
 
     //player health 
     public static int playerHealth;
@@ -65,22 +74,32 @@ public class MainPlayer : MonoBehaviour {
 
     /**reduce player health by dmg**/
     public void Damage(int dmg) {
+
+        if (iframes) { return; }
+
         if (invulnerable == false) {
             //reduce health and update UI
             playerHealth -= dmg;
             UpdateHealthUI();
 
             // Check if player health has reached zero
-            if (playerHealth <= 0) 
-            {
+            if (playerHealth <= 0) {
                 playerDeath();
                 StartCoroutine(LoadSceneAfterDelay("MainDeath"));
-           
+
+            }
+            else {
+                iframes = true;
             }
         }
         else {
             UpdateHealthUI();
         }
+    }
+
+    private Color SetAlpha(Color color, float alpha) {
+        color.a = alpha;
+        return color;
     }
 
     public void playerDeath()
@@ -97,9 +116,41 @@ public class MainPlayer : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
 
+    private void FlickerIFrames() {
+
+        flicker_cur_time += Time.deltaTime;
+
+        if (flicker_cur_time >= flicker_total_time) {
+
+            Debug.Log("flicker");
+
+            if (visible) {
+                renderer.material.color = SetAlpha(renderer.material.color, 0.1f);
+            }
+
+            else {
+                renderer.material.color = SetAlpha(renderer.material.color, 0.5f);
+            }
+
+            flicker_cur_time = 0f;
+            visible = !visible;
+            flickers++;
+        }
+
+        if (flickers >= total_flickers) {
+            renderer.material.color = SetAlpha(renderer.material.color, 1f);
+            flickers = 0;
+            iframes = false;
+            visible = true;
+        }
+    }
+
     //update is called once per frame
     void Update()
     {
+
+        if (iframes) { FlickerIFrames(); }
+
         UpdateHealthUI();
         
         if (!isDead) {
@@ -208,7 +259,7 @@ public class MainPlayer : MonoBehaviour {
         if (!isDashing)
         {
             //objects, bullets, and explosions deal 1 damage
-            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion"))
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Bomber") || collision.gameObject.CompareTag("Explosion"))
             {
                 Damage(1);
             }

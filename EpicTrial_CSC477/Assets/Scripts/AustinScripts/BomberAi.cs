@@ -5,7 +5,7 @@ public class BomberAi : MonoBehaviour
 {
     private AudioManager am;
     public GameObject Drop;
-    public float fuseTime = 5.0f; // Time until explosion (seconds)
+    public float fuseTime = 5f; // Time until explosion (seconds)
     public float explosionRadius = 5.0f; // Radius of the explosion
     public GameObject explosionPrefab; // Prefab of the explosion effect
     private float timer = 0.0f;
@@ -14,6 +14,7 @@ public class BomberAi : MonoBehaviour
     private Transform player;
 
     void Start() {
+        fuseTime = Random.Range(4, 9);
         am = GameObject.Find("AM").GetComponent<AudioManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("MainPlayer").transform;
@@ -23,7 +24,7 @@ public class BomberAi : MonoBehaviour
     {
         // Update timer
         timer += Time.deltaTime;
-
+        
         // Check for explosion conditions
         if (timer >= fuseTime)
         {
@@ -34,7 +35,7 @@ public class BomberAi : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
        
-        if (collision.gameObject == player && !exploded) // Check collision with player
+        if (collision.gameObject.CompareTag("MainPlayer") || collision.gameObject.CompareTag("Shield") && !exploded) // Check collision with player
         {
             print("Yep");
             Explode();

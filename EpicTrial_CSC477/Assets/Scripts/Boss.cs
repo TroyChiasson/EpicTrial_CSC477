@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
+    public bool phase;
     private AudioManager am;
     public Transform target; // Reference to the player's transform
     public GameObject BulletTest;
@@ -24,7 +25,7 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
-
+        phase = false;
         am = GameObject.Find("AM").GetComponent<AudioManager>();
 
         if (target == null)
@@ -60,6 +61,7 @@ public class Boss : MonoBehaviour
             //Phase 2
             if (bossHealth < 6)
             {
+                phase = true;
                 transform.Rotate(Vector3.left * 200 * Time.deltaTime);
                 maxFireDelay = .5f;
                 minFireDelay = .1f;
@@ -90,7 +92,7 @@ public class Boss : MonoBehaviour
 
         if (fireTime >= fireDelay)
         {
-            fireBullet();
+            fireBullet(phase);
             fireTime = 0.0f;
         }
         else
@@ -99,12 +101,24 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void fireBullet() {
-        am.Play(0);
-        Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
-        GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
-        Vector3 direction = firingPoint.position - transform.localPosition; // Shoot towards player
-        firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
+    void fireBullet(bool phase) {
+        if (phase == false)
+        {
+            print("fALSE");
+            am.Play(0);
+            Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
+            GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
+            Vector3 direction = -1 * (firingPoint.position - player.localPosition); // Shoot towards player
+            firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
+        }
+        if (phase == true)
+        {
+            am.Play(0);
+            Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
+            GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
+            Vector3 direction = (firingPoint.position - transform.localPosition); // Shoot towards player
+            firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 20f; // Use normalized for consistent speed
+        }
     }
 
     void OnCollisionEnter(Collision collision)

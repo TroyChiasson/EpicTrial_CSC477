@@ -78,6 +78,7 @@ public class LaserTurret : MonoBehaviour {
 
     public void AddDestroyList(GameObject obj) {
         destroyList.Add(obj);
+        Debug.Log("added to destroy list");
     }
 
     public void RemoveDestroyList(GameObject obj) {

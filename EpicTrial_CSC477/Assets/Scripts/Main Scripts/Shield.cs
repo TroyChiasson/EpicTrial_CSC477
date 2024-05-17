@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    [SerializeField] private Transform player; // Assign the player object in the inspector
+    // Assign the player object in the inspector
     [SerializeField] private float orbitDistance = 1f; // Set the desired distance from the player
     [SerializeField] private float rotationSpeed = 100f; // Adjust the rotation speed
 
     private AudioManager am;
-
+    public GameObject explosionPrefab;
     public GameObject Bullettest;
     public Transform firingPoint;
     public static bool bulletFired;
@@ -18,6 +18,7 @@ public class Shield : MonoBehaviour
     // Shield Health Stuff
     public List<GameObject> shieldSegments;
     public GameObject playerShield;
+    public GameObject player;
     public int shieldHealth;
     private int maxShieldHealth = 6;
     private Coroutine resetShieldCoroutine;
@@ -27,19 +28,20 @@ public class Shield : MonoBehaviour
     void Start()
     {
         am = GameObject.Find("AM").GetComponent<AudioManager>();
+        player = GameObject.FindGameObjectWithTag("MainPlayer");
         shieldHealth = 6;
     }
 
     void Update()
     {
-        Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.position;
+        Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.transform.position;
         direction.z = 0f; // Ensure rotation happens in 2D plane
 
         // Calculate desired rotation based on player and mouse position
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Rotate the object around the player at a set distance (with Z at 0)
-        Vector3 desiredPosition = player.position + Quaternion.Euler(0, 0, angle) * Vector3.right * orbitDistance;
+        Vector3 desiredPosition = player.transform.position + Quaternion.Euler(0, 0, angle) * Vector3.right * orbitDistance;
         desiredPosition.z = 0f; // Force Z to 0
         transform.position = desiredPosition;
 
@@ -59,6 +61,11 @@ public class Shield : MonoBehaviour
             Reflect();
         }
 
+        if (other.gameObject.tag == "Bomber" && !isInvulnerable)
+        {
+            player.GetComponent<MainPlayer>().Damage(1);
+        }
+
         if (shieldHealth <= 0)
         {
             SetShieldActive(false);
@@ -70,15 +77,23 @@ public class Shield : MonoBehaviour
                 resetShieldCoroutine = StartCoroutine(ResetShieldCoroutine());
             }
         }
+
+        //Testing sheild bash
+        if (other.gameObject.tag == "Enemy" && player.GetComponent<MainPlayer>().isDashing == true)
+        {
+            shieldHealth--;
+            UpdateShield();
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+        }
     }
 
     void Reflect()
     {
         am.Play(4);
-        print("howdy");
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(Bullettest, enemyPos, Quaternion.identity);
-        Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.position;
+        Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.transform.position;
         firedBullet.GetComponent<Rigidbody>().velocity = direction * 2f;
         shieldHealth--;
         UpdateShield();
