@@ -37,7 +37,7 @@ public class MainPlayer : MonoBehaviour {
     public float dashLength = .5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool isDead = false;
     private TrailRenderer trailRenderer;
 
@@ -259,7 +259,7 @@ public class MainPlayer : MonoBehaviour {
         if (!isDashing)
         {
             //objects, bullets, and explosions deal 1 damage
-            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Explosion"))
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet") || collision.gameObject.CompareTag("Bomber") || collision.gameObject.CompareTag("Explosion"))
             {
                 Damage(1);
             }
