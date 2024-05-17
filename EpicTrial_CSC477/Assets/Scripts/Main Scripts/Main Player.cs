@@ -37,7 +37,7 @@ public class MainPlayer : MonoBehaviour {
     public float dashLength = .5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool isDead = false;
     private TrailRenderer trailRenderer;
 

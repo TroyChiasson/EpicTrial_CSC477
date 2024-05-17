@@ -10,7 +10,7 @@ public class Shield : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f; // Adjust the rotation speed
 
     private AudioManager am;
-
+    public GameObject explosionPrefab;
     public GameObject Bullettest;
     public Transform firingPoint;
     public static bool bulletFired;
@@ -77,12 +77,20 @@ public class Shield : MonoBehaviour
                 resetShieldCoroutine = StartCoroutine(ResetShieldCoroutine());
             }
         }
+
+        //Testing sheild bash
+        if (other.gameObject.tag == "Enemy" && player.GetComponent<MainPlayer>().isDashing == true)
+        {
+            shieldHealth--;
+            UpdateShield();
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+        }
     }
 
     void Reflect()
     {
         am.Play(4);
-        print("howdy");
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
         GameObject firedBullet = Instantiate(Bullettest, enemyPos, Quaternion.identity);
         Vector3 direction = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - player.transform.position;
