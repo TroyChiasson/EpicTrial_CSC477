@@ -634,7 +634,7 @@ MonoBehaviour:
   - {fileID: 1727160676}
   - {fileID: 308529805}
   playerShield: {fileID: 147399226}
-  player: {fileID: 729771789}
+  player: {fileID: 1927263164}
   shieldHealth: 6
 --- !u!1 &308529805 stripped
 GameObject:
@@ -1834,12 +1834,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3961925120726166695}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &729771789 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2441963319499045244, guid: 08e160b808a954b71aaf43c99ad2a9d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 792666657938566714}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &840408366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2675,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2483863788669437747, guid: dd1994b706d745d4c9ca1d75809e6b98,
     type: 3}
   m_PrefabInstance: {fileID: 1820503193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1927263164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5185677155062610066, guid: 08e160b808a954b71aaf43c99ad2a9d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 792666657938566714}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1976528158 stripped
 GameObject:

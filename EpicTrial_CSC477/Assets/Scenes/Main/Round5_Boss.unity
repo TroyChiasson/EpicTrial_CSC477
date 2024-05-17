@@ -628,7 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitDistance: 1
   rotationSpeed: 100
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 139366, guid: 59050939c00b3624d8b406b1a57fca9d, type: 3}
   Bullettest: {fileID: 474032302994295501, guid: d5fd3ec99df673a41b103f3503f2293b,
     type: 3}
   firingPoint: {fileID: 2059919062}
@@ -640,7 +640,7 @@ MonoBehaviour:
   - {fileID: 1210987450}
   - {fileID: 1210987449}
   playerShield: {fileID: 147399226}
-  player: {fileID: 1381764318}
+  player: {fileID: 423341014}
   shieldHealth: 6
 --- !u!1001 &152746257
 PrefabInstance:
@@ -848,6 +848,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08e160b808a954b71aaf43c99ad2a9d4, type: 3}
+--- !u!1 &423341014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5185677155062610066, guid: 08e160b808a954b71aaf43c99ad2a9d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 423341013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &441564951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,7 +2633,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 423341013}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 423341014}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc2db116c9c9c9b4ea06e71451447660, type: 3}
