@@ -48,7 +48,7 @@ public class Shield : MonoBehaviour
         // Apply rotation smoothly
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
 
-        if ((isInvulnerable && shieldHealth <= 0) || (resetShieldCoroutine != null))
+        if ((shieldHealth <= 0) || (resetShieldCoroutine != null))
         {
             ToggleShieldFlashing();
         }
@@ -56,12 +56,12 @@ public class Shield : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "EnemyBullet" && !isInvulnerable)
+        if (other.gameObject.tag == "EnemyBullet")
         {
             Reflect();
         }
 
-        if (other.gameObject.tag == "Bomber" && !isInvulnerable)
+        if (other.gameObject.tag == "Bomber")
         {
             player.GetComponent<MainPlayer>().Damage(1);
         }
@@ -98,7 +98,7 @@ public class Shield : MonoBehaviour
         shieldHealth--;
         UpdateShield();
         isInvulnerable = true; 
-        StartCoroutine(ResetInvulnerability());
+        //StartCoroutine(ResetInvulnerability());
     }
 
     IEnumerator ResetInvulnerability()
@@ -148,7 +148,7 @@ public class Shield : MonoBehaviour
 
     IEnumerator FlashShield()
     {
-        while ((isInvulnerable && shieldHealth <= 0) || (resetShieldCoroutine != null))
+        while ((shieldHealth <= 0) || (resetShieldCoroutine != null))
         {
             yield return new WaitForSeconds(0.5f);
             foreach (var segment in shieldSegments)

@@ -21,7 +21,8 @@ public class ShieldBulletMotion : MonoBehaviour
     void OnCollisionEnter(Collision other) 
     {
         //dont get destroyed on player or shield
-        if (other.gameObject.tag == "MainPlayer" || other.gameObject.tag == "Shield") { return; }
+        if (other.gameObject.tag == "MainPlayer" || other.gameObject.tag == "Shield") 
+        { return; }
 
 
         Destroy(this.gameObject);

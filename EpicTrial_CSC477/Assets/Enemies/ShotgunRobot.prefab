@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5102161598565142337}
   - component: {fileID: 8363063441714747922}
   - component: {fileID: 4588462416490486194}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3871372675287598883}
   - component: {fileID: 8944868350921058688}
   - component: {fileID: 8146060231207542083}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,9 +203,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6294088711546125004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShotgunRobot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

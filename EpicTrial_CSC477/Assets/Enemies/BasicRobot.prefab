@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 75538947536130267}
   - component: {fileID: 2608588420239391821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9019482691132686087}
   - component: {fileID: 840179058107962810}
   - component: {fileID: 4803401430850540595}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BasicRobot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -261,7 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1da4a85a1d2f448838021c107ce403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  am: {fileID: 0}
   BulletTest: {fileID: 474032302994295501, guid: f8f21c4bbb820be4e8c1c69c07b13c66,
     type: 3}
   Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
