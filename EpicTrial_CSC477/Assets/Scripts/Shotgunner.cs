@@ -54,15 +54,17 @@ public class EnemyShotgunTest : MonoBehaviour
     void fireBullet()
     {
         Vector3 enemyPos = new Vector3(firingPoint.position.x, firingPoint.position.y, firingPoint.position.z);
-        Vector3 enemyPos2 = new Vector3(firingPoint2.position.x + 1.1f, firingPoint2.position.y, firingPoint2.position.z);
-        Vector3 enemyPos3 = new Vector3(firingPoint3.position.x - 1.1f, firingPoint3.position.y, firingPoint3.position.z);
+        Vector3 enemyPos2 = new Vector3(firingPoint2.position.x+1.1f, firingPoint2.position.y, firingPoint2.position.z);
+        Vector3 enemyPos3 = new Vector3(firingPoint3.position.x-1.1f, firingPoint3.position.y, firingPoint3.position.z);
         GameObject firedBullet = Instantiate(BulletTest, enemyPos, Quaternion.identity);
         GameObject firedBullet2 = Instantiate(BulletTest, enemyPos2, Quaternion.identity);
         GameObject firedBullet3 = Instantiate(BulletTest, enemyPos3, Quaternion.identity);
-        Vector3 direction = player.position - firingPoint.position; // Shoot towards player
-        firedBullet.GetComponent<Rigidbody>().velocity = direction.normalized * 10f; // Use normalized for consistent speed
-        firedBullet2.GetComponent<Rigidbody>().velocity = direction.normalized * 10f;
-        firedBullet3.GetComponent<Rigidbody>().velocity = direction.normalized * 10f;
+        Vector3 direction1 = player.position - firingPoint.position; // Shoot towards player
+        Vector3 direction2 = player.position - firingPoint2.position; // Shoot towards player
+        Vector3 direction3 = player.position - firingPoint3.position; // Shoot towards player
+        firedBullet.GetComponent<Rigidbody>().velocity = direction1.normalized * 10f; // Use normalized for consistent speed
+        firedBullet2.GetComponent<Rigidbody>().velocity = direction2.normalized * 10f;
+        firedBullet3.GetComponent<Rigidbody>().velocity = direction3.normalized * 10f;
     }
 
     void OnDestroy() {
