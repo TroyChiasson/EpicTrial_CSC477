@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         scoreManager.score = 0;
-        SceneManager.LoadScene("Round1");
+        SceneManager.LoadScene("Cutscene");
     }   
 
     public void Quit()
