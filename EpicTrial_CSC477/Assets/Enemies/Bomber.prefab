@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 9019482691132686087}
   - component: {fileID: 840179058107962810}
   - component: {fileID: 8493688904320387537}
+  - component: {fileID: 4022631768431751968}
   m_Layer: 3
   m_Name: Bomber
   m_TagString: Bomber
@@ -256,9 +257,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8880676337494127804}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbf49d05343b234c9a21ee5b446a0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
+  fuseTime: 5
+  explosionRadius: 2
+  explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+--- !u!114 &4022631768431751968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8880676337494127804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1ebe9fce62d8245936abcf750e3750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Drop: {fileID: 8545532415503947277, guid: 534546495399bc74abafd9a88247c0c1, type: 3}
