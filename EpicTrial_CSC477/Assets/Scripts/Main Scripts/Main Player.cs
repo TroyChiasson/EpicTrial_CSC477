@@ -271,5 +271,10 @@ public class MainPlayer : MonoBehaviour {
         heart1.SetActive(playerHealth >= 1);
         heart2.SetActive(playerHealth >= 2);
         heart3.SetActive(playerHealth >= 3);
+
+        if( playerHealth > startHealth)
+        {
+            playerHealth = startHealth;
+        }
     }
 }
