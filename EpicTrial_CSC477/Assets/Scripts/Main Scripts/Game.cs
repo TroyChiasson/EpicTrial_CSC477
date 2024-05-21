@@ -25,6 +25,7 @@ public class Game : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Game.Instance.input.Default.Escape.WasPressedThisFrame()) { Application.Quit(); };
         if (MainPlayer.playerHealth == 1)
         {
             LowHealthMaterial.SetFloat("_LowHealth",0.3f);

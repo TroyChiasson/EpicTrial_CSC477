@@ -80,6 +80,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""a90f1289-675e-478f-968d-f6f00f9842a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""Q"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d9d707e-3609-4ae3-8a03-a3481cb842c4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Default_Right = m_Default.FindAction("Right", throwIfNotFound: true);
         m_Default_Space = m_Default.FindAction("Space", throwIfNotFound: true);
         m_Default_Q = m_Default.FindAction("Q", throwIfNotFound: true);
+        m_Default_Escape = m_Default.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Right;
     private readonly InputAction m_Default_Space;
     private readonly InputAction m_Default_Q;
+    private readonly InputAction m_Default_Escape;
     public struct DefaultActions
     {
         private @Input m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         public InputAction @Right => m_Wrapper.m_Default_Right;
         public InputAction @Space => m_Wrapper.m_Default_Space;
         public InputAction @Q => m_Wrapper.m_Default_Q;
+        public InputAction @Escape => m_Wrapper.m_Default_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Q.started += instance.OnQ;
             @Q.performed += instance.OnQ;
             @Q.canceled += instance.OnQ;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -332,6 +358,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Q.started -= instance.OnQ;
             @Q.performed -= instance.OnQ;
             @Q.canceled -= instance.OnQ;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -357,5 +386,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
         void OnRight(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
         void OnQ(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

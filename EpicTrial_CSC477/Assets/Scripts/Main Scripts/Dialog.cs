@@ -36,7 +36,7 @@ public class DialogIntro : MonoBehaviour
     void Update()
     {
         // Check if the button is not pressed and dialog is complete
-        if (input.Default.Q.WasPressedThisFrame())
+        if (input.Default.Space.WasPressedThisFrame())
         {
             NextDialog();
         }
@@ -68,8 +68,7 @@ public class DialogIntro : MonoBehaviour
             else
             {
                 // Wait for "Q" input to proceed to the next dialog
-                if (input.Default.Q.WasPressedThisFrame())
-                {
+                if (input.Default.Space.WasPressedThisFrame()) {
                     NextDialog();
                 }
             }
