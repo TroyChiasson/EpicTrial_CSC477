@@ -30,7 +30,9 @@ public class Drops : MainPlayer
     }
 
     void HealthUp() {
-        playerHealth++;
+        if (playerHealth < 3) {
+            playerHealth++;
+        }
         Destroy(this.gameObject);
     }
 
