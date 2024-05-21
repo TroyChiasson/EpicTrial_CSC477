@@ -609,7 +609,7 @@ TextureImporter:
         width: 104
         height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -617,6 +617,69 @@ TextureImporter:
       bones: []
       spriteID: b6da2379005d3f84bb39634c56c49bb5
       internalID: 803099485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Health Pack
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 725
+        width: 86
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05525b492947d54ca68650571db981b
+      internalID: -1462269532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 39
+        width: 177
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6930e0c88f7cf3f4ab49376fe6fb97fb
+      internalID: -1236782870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regular Turret
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 38
+        width: 177
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfb966c4da0d6c2488904828b705ce34
+      internalID: -1669555833
       vertices: []
       indices: 
       edges: []
@@ -645,13 +708,16 @@ TextureImporter:
       General Front Facing: -2146591220
       General Left Facing: 809704154
       General Right Facing: 1519873638
+      Health Pack: -1462269532
       Helmet Sprite: 2040200029
       Laser: 1033543310
+      Laser Turret: -1236782870
       MG Enemy Back Facing: 271561237
       MG Enemy Front Facing: 57627194
       MG Enemy Left Facing: -256941806
       MG Enemy Right Facing: -1691334437
       Missile: -633978806
+      Regular Turret: -1669555833
       Shield: 365273726
       Sprite Sheet w-o Borders_16: 946374918
       Sprite Sheet w-o Borders_19: -1568654458
