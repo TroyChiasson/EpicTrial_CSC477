@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Round4_Outlast.unity
     guid: 46d62aed47554964c93a66917844f546
   - enabled: 1
+    path: Assets/Scenes/Main/Cutscene3.unity
+    guid: 46e1e6b4e2d55ad4f94b827e015d746c
+  - enabled: 1
     path: Assets/Scenes/Main/Round5_Boss.unity
     guid: c1153296ac01efe48b14447ef1d07aa9
   - enabled: 1
