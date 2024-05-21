@@ -9,7 +9,7 @@ public class scoreManager : MonoBehaviour
     public static scoreManager instance;
     public TextMeshProUGUI scoreText;
 
-    public static int score = 1903;
+    public static int score = 0;
 
     private void Awake()
     {

@@ -10,7 +10,7 @@ public class DeathScreen : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     private void Start()
     {
-        HS.Init(this, "Momento Mori");
+        HS.Init(this, "Memento Mori");
     }
 
     public void SubmitScore()

@@ -7,6 +7,7 @@ public class Game : MonoBehaviour {
 
     public static Game Instance { get; private set; }
     public Input input;
+    [SerializeReference] public Material LowHealthMaterial;
 
     private WaveManager waveManager;
 
@@ -17,12 +18,21 @@ public class Game : MonoBehaviour {
         Instance = this;
 
         waveManager = FindObjectOfType<WaveManager>(); 
-        waveManager.OnAllWavesCompleted.AddListener(ProgressToNextScene); 
+        waveManager.OnAllWavesCompleted.AddListener(ProgressToNextScene);
+        LowHealthMaterial.SetFloat("_LowHealth", 0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (MainPlayer.playerHealth == 1)
+        {
+            LowHealthMaterial.SetFloat("_LowHealth",0.3f);
+        }
+        else
+        {
+            LowHealthMaterial.SetFloat("_LowHealth", 0.0f);
+        }
         /*
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
