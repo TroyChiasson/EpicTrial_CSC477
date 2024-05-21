@@ -600,6 +600,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Helmet Sprite
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 783
+        width: 104
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6da2379005d3f84bb39634c56c49bb5
+      internalID: 803099485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -624,6 +645,7 @@ TextureImporter:
       General Front Facing: -2146591220
       General Left Facing: 809704154
       General Right Facing: 1519873638
+      Helmet Sprite: 2040200029
       Laser: 1033543310
       MG Enemy Back Facing: 271561237
       MG Enemy Front Facing: 57627194
@@ -631,7 +653,6 @@ TextureImporter:
       MG Enemy Right Facing: -1691334437
       Missile: -633978806
       Shield: 365273726
-      Sprite Sheet w-o Borders_0: 2040200029
       Sprite Sheet w-o Borders_16: 946374918
       Sprite Sheet w-o Borders_19: -1568654458
       Sprite Sheet w-o Borders_2: -161261441
