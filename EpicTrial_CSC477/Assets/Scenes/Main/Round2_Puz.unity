@@ -647,10 +647,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 850338359511969131, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1420892717789695435, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839513133723003167, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5187821459858208286, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
@@ -697,6 +707,16 @@ PrefabInstance:
       propertyPath: bulletTurrets.Array.data[0]
       value: 
       objectReference: {fileID: 1086349074}
+    - target: {fileID: 5716766181448975474, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384078361344344383, guid: ef1315adc34fe954cb85b04d05e82f46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7336431304430836967, guid: ef1315adc34fe954cb85b04d05e82f46,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1633,6 +1653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540427670910072857, guid: 19298debfb44d8843a820adc74cda48e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.13
       objectReference: {fileID: 0}
     - target: {fileID: 6045020026969451451, guid: 19298debfb44d8843a820adc74cda48e,
         type: 3}

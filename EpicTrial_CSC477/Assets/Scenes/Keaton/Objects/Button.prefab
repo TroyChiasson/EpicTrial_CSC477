@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 2542855799700456903}
   - component: {fileID: 1141782450984451156}
   - component: {fileID: 740261094492982585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.000000013723}
-  m_LocalScale: {x: 2.0353982, y: 2.0353982, z: 2.34451}
+  m_LocalScale: {x: 4.035398, y: 4.035398, z: 4.648246}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7336431304430836967}
